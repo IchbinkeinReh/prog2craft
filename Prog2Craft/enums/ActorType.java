@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum ActorType {
-	Infantarie(10, 1, 1, 1, Leer, Felsig),
-	Panzer(20, 2, 2, 2),
-	Laufpanzer(30, 3, 3, 3),
-	Flugzeug(50, 5, 5, 5);
+	Infantarie(10, 1, 1, 1, Leer, Felsig, Gebirge),
+	Panzer(20, 2, 2, 2, Leer),
+	Laufpanzer(30, 3, 3, 3, Leer),
+	Flugzeug(50, 5, 5, 5, Leer, Felsig, Gebirge, Meer);
 	
 	private final int punkte;
 	private final int reichweite;
@@ -33,11 +33,17 @@ public enum ActorType {
 		return verteidigung;
 	}
 	
-	private ActorType (int punkte, int reichweite, int angriff, int verteidigung, FieldType... fields){
+	public boolean canWalkOn(FieldType type)
+	{
+	return this.felder.contains(type);
+	}
+	
+	private ActorType (int punkte, int reichweite, int angriff, int verteidigung, FieldType... felder){
 		this.punkte = punkte;
 		this.reichweite = reichweite;
 		this.angriff = angriff;
 		this.verteidigung = verteidigung;
-		//this.felder.
+		for (int i = 0; i < felder.length; i++)
+			this.felder.add(felder[i]);
 	}
 }
