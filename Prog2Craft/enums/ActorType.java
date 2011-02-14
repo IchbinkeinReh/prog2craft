@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum ActorType {
-	Infantarie(10, 1, 1, 1, Leer, Felsig, Gebirge),
-	Panzer(20, 2, 2, 2, Leer),
-	Laufpanzer(30, 3, 3, 3, Leer),
-	Flugzeug(50, 5, 5, 5, Leer, Felsig, Gebirge, Meer);
+	INFANTARIE(10, 1, 1, 1, LEER, FELSIG, GEBIRGE),
+	PANZER(20, 2, 2, 2, LEER),
+	LAUFPANZER(30, 3, 3, 3, LEER),
+	FLUGZEUG(50, 5, 5, 5, LEER, FELSIG, GEBIRGE, MEER);
 	
 	private final int punkte;
 	private final int reichweite;
