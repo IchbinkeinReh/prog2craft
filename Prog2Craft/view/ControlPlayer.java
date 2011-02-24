@@ -3,9 +3,9 @@ package view;
 
 import javax.swing.JComponent;
 
-import main.Prog2CraftGame;
 
 import enums.Direction;
+import game.Prog2CraftGame;
 
 /**
  * An ActorController that allows to move an actor in the given direction that

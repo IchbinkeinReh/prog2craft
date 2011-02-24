@@ -15,10 +15,6 @@ import javax.swing.JPanel;
 
 import enums.*;
 
-/**
- * A swing component that displays the PacMan game.
- */
-@SuppressWarnings("serial")
 
 public class Prog2CraftComponent extends JPanel {
 
