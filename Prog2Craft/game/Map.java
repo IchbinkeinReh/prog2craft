@@ -7,10 +7,11 @@ public class Map {
 	
 	public Map (Field[][] spielfeld)
 	{
-		this.spielfeld = spielfeld;
+		this.setSpielfeld(spielfeld);
 	}
 	
-	public static Map parse(String[] mapDescription) {
+	
+	public static Map parse(String... mapDescription) {
 		int hoehe = mapDescription.length;
 		int laenge = mapDescription[0].length();
 		Field[][] map = new Field[laenge][hoehe];
@@ -24,11 +25,22 @@ public class Map {
 			x = 0;
 			for (char token : act.toCharArray())
 			{
-			FieldFactory.create(token);
+			map[x][y] = FieldFactory.create(token,x,y);
 			x++;
 			}
 		y++;
 		}
 	return new Map(map);
 	}
+
+
+	public void setSpielfeld(Field[][] spielfeld) {
+		this.spielfeld = spielfeld;
+	}
+
+
+	public Field[][] getSpielfeld() {
+		return spielfeld;
+	}
+	
 }
