@@ -5,7 +5,9 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
+import factory.RenderFactory;
 import game.Field;
+import game.Prog2CraftGame;
 
 public class Prog2Craft3D {
 
@@ -19,7 +21,8 @@ public class Prog2Craft3D {
 	  private static boolean finished;
 	 
 	  /** Angle of rotating square */
-	  private static float angle;
+	  @SuppressWarnings("unused")
+	private static float angle;
 	  
 	  private static float x, y, z = 1.0f;
 	  
@@ -33,6 +36,9 @@ public class Prog2Craft3D {
 	 
 	  public static int i;
 	  
+	  public static GLFont font = new GLFont( new Font("Trebuchet", Font.BOLD, 18) );
+
+	  
 	  /**
 	   * Application init
 	   * @param args Commandline args
@@ -40,7 +46,7 @@ public class Prog2Craft3D {
 	  public static void main(String[] args) {
 	    boolean fullscreen = (args.length == 1 && args[0].equals("-fullscreen"));
 	    Keyboard.enableRepeatEvents(true);
-	    
+	    fullscreen = true;
 	    try {
 	      init(fullscreen);
 	      run();
@@ -53,19 +59,14 @@ public class Prog2Craft3D {
 	    System.exit(0);
 	  }
 	  
-	  public static void renderField(Field f) {
-	      GL11.glBegin(GL11.GL_QUADS);
-	      
-	      if (i++%2 == 1)
-	    	  GL11.glColor3b((byte)50, (byte)100, (byte)0);
-	      else
-	    	  GL11.glColor3b((byte)100, (byte)50, (byte)0);
-	    	  
-	      GL11.glVertex3f(x,y,0.0f);
-	      GL11.glVertex3f(x+100.0f,y,0.0f);
-	      GL11.glVertex3f(x+100.0f,y+100.0f,0.0f);
-	      GL11.glVertex3f(x,y+100.0f,0.0f);
-	      GL11.glEnd();	 
+	  public static void renderGame(Prog2CraftGame game) {
+	      for (Field[] out : game.getSpielfeld())
+	    	  {
+	    	  for (Field in : out)
+	    	  	{
+	    		  RenderFactory.renderField(in);
+	    	  	}
+	    	  }
 	  }
 	 
 	  /**
@@ -89,6 +90,8 @@ public class Prog2Craft3D {
 	   */
 	  private static void run() {
 	 
+		 Prog2CraftGame game = new Prog2CraftGame();
+		  
 	    while (!finished) {
 	      // Always call Window.update(), all the time - it does some behind the
 	      // scenes work, and also displays the rendered output
@@ -101,8 +104,8 @@ public class Prog2Craft3D {
 	 
 	      // The window is in the foreground, so we should play the game
 	      else if (Display.isActive()) {
-	        logic();
-	        render();
+	        logic(game);
+	        render(game);
 	        Display.sync(FRAMERATE);
 	      } 
 	 
@@ -113,11 +116,11 @@ public class Prog2Craft3D {
 	          Thread.sleep(100);
 	        } catch (InterruptedException e) {
 	        }
-	        logic();
+	        logic(game);
 	 
 		// Only bother rendering if the window is visible or dirty
 	        if (Display.isVisible() || Display.isDirty()) {
-	          render();
+	          render(game);
 	        }
 	      }
 	    }
@@ -134,7 +137,7 @@ public class Prog2Craft3D {
 	  /**
 	   * Do all calculations, handle input, etc.
 	   */
-	  private static void logic() {
+	  private static void logic(Prog2CraftGame game) {
 	    // Example input handler: we'll check for the ESC key and finish the game instantly when it's pressed
 		while (Keyboard.next()) {
 			
@@ -183,18 +186,18 @@ public class Prog2Craft3D {
 			}
 			 
 	    // Rotate the square
-		if (left)
-				x -= 1.0f; 
-		if (right) 
-				x += 1.0f; 
-		if (up)
-				y += 1.0f; 
-		if (down)
-				y -= 1.0f;
-		if (zoomin)
-				z += 1.0f;
-		if (zoomout)
-				z -= 1.0f;
+		if (left) //  && x > game.getBreite()*100
+				x -= 2*z*1.0f; 
+		if (right && x < 0) 
+				x += 2*z*1.0f; 
+		if (up && y < 0)
+				y += 2*z*1.0f; 
+		if (down) //  && y > game.getHoehe()*100
+				y -= 2*z*1.0f;
+		if (zoomin && z < 1.5f)
+				z += 0.01f;
+		if (zoomout && z > 0.5f)
+				z -= 0.01f;
 
 	   // angle += 2.0f % 360;
 	  }
@@ -203,28 +206,29 @@ public class Prog2Craft3D {
 	  /**
 	   * Render the current frame
 	   */
-	  private static void render() {
+	  private static void render(Prog2CraftGame game) {
 	 
-		GL11.glShadeModel(GL11.GL_SMOOTH);
-	    GL11.glMatrixMode(GL11.GL_PROJECTION);
-	    GL11.glLoadIdentity();
-	    GL11.glOrtho(0, Display.getDisplayMode().getWidth(), 0, Display.getDisplayMode().getHeight(), -1.0, 1.0);
-	    GL11.glMatrixMode(GL11.GL_MODELVIEW);
-	 
+			GL11.glShadeModel(GL11.GL_SMOOTH);
+		    GL11.glMatrixMode(GL11.GL_PROJECTION);
+		    GL11.glLoadIdentity();
+		    GL11.glOrtho(0, Display.getDisplayMode().getWidth(), 0, Display.getDisplayMode().getHeight(), -1.0, 1.0);
+		    GL11.glMatrixMode(GL11.GL_MODELVIEW);
+		 
 	    // clear the screen
 	    GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_STENCIL_BUFFER_BIT);
 	 
 	    // center square according to screen size
 	    GL11.glPushMatrix();
-	    GL11.glTranslatef(Display.getDisplayMode().getWidth() / 2, Display.getDisplayMode().getHeight() / 2, 0.0f);
+	 //   GL11.glTranslatef(Display.getDisplayMode().getWidth() / 2, Display.getDisplayMode().getHeight() / 2, 0.0f);
 	    GL11.glTranslatef(x*5, y*5, 0.0f);
-	    GL11.glScalef(1/z, 1/z, 1/z);
+	    GL11.glScalef(z, z, z);
 	      // rotate square according to angle
 	//      GL11.glRotatef(angle, 0, 0, 1.0f);
 
-	    Field f = new Field();
-	    renderField(f);
+	    renderGame(game);
 	    
+	    GL11.
+	
 	    GL11.glPopMatrix();
 	  }
 	  
