@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Font;
+
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
@@ -36,8 +38,8 @@ public class Prog2Craft3D {
 	 
 	  public static int i;
 	  
-	  public static GLFont font = new GLFont( new Font("Trebuchet", Font.BOLD, 18) );
-
+      static Font font;
+      static TrueTypeFont trueTypeFont; 
 	  
 	  /**
 	   * Application init
@@ -91,6 +93,8 @@ public class Prog2Craft3D {
 	  private static void run() {
 	 
 		 Prog2CraftGame game = new Prog2CraftGame();
+		 font = new Font("Verdana", Font.BOLD, 20);
+	      trueTypeFont = new TrueTypeFont(font, true); 
 		  
 	    while (!finished) {
 	      // Always call Window.update(), all the time - it does some behind the
@@ -227,7 +231,7 @@ public class Prog2Craft3D {
 
 	    renderGame(game);
 	    
-	    GL11.
+	    trueTypeFont.drawString(20.0f, 20.0f, "this is a test", Color.green); 
 	
 	    GL11.glPopMatrix();
 	  }
