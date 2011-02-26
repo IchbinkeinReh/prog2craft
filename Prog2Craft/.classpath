@@ -11,6 +11,7 @@
 	<classpathentry kind="lib" path="lib/ibxm.jar"/>
 	<classpathentry kind="lib" path="lib/jogg-0.0.7.jar"/>
 	<classpathentry kind="lib" path="lib/jorbis-0.0.15.jar"/>
-	<classpathentry kind="lib" path="lib/slick-util.jar"/>
+	<classpathentry kind="lib" path="lib/slick-util.jar" sourcepath="C:/Users/IBKR/Downloads/lib/slick-util-src.zip"/>
+	<classpathentry kind="lib" path="lib/slick.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -6,6 +6,7 @@ import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.*;
 
 import factory.RenderFactory;
 import game.Field;
@@ -39,7 +40,7 @@ public class Prog2Craft3D {
 	  public static int i;
 	  
       static Font font;
-      static TrueTypeFont trueTypeFont; 
+      static UnicodeFont unicodeFont; 
 	  
 	  /**
 	   * Application init
@@ -93,8 +94,12 @@ public class Prog2Craft3D {
 	  private static void run() {
 	 
 		 Prog2CraftGame game = new Prog2CraftGame();
-		 font = new Font("Verdana", Font.BOLD, 20);
-	      trueTypeFont = new TrueTypeFont(font, true); 
+		 try {
+			unicodeFont = new UnicodeFont("Arial", 25, false, false);
+		} catch (SlickException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		  
 	    while (!finished) {
 	      // Always call Window.update(), all the time - it does some behind the
@@ -231,7 +236,9 @@ public class Prog2Craft3D {
 
 	    renderGame(game);
 	    
-	    trueTypeFont.drawString(20.0f, 20.0f, "this is a test", Color.green); 
+	    GL11.glEnable(GL11.GL_BLEND);
+	    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_SRC_ALPHA);
+	    unicodeFont.drawString(20.0f, 20.0f, "this is a test"); 
 	
 	    GL11.glPopMatrix();
 	  }
