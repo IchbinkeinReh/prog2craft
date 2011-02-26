@@ -95,7 +95,7 @@ public class Prog2Craft3D {
 	 
 		 Prog2CraftGame game = new Prog2CraftGame();
 		 try {
-			unicodeFont = new UnicodeFont("Arial", 25, false, false);
+			unicodeFont = new UnicodeFont("data/arial.ttf", 48, false, false);
 		} catch (SlickException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
