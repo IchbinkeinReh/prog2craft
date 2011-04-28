@@ -45,6 +45,12 @@ public class Map {
 		return spielfeld;
 	}
 	
+	public Field getField(int x, int y) {
+		if ( (x < 0) || (x > spielfeld.length-1) || (y < 0) || (y > spielfeld[0].length-1) )
+			throw new IllegalArgumentException("0x000024");
+		return this.spielfeld[x][y];
+	}
+	
 	public void render() {
 	    for (Field[] out : spielfeld)
 	  	  {

@@ -15,6 +15,7 @@ public class Field {
 	private int x, y;
 	private FieldType type;
 	private Image img;
+	private Actor actor;
 
 	public Field(FieldType type, int x, int y) throws SlickException {
 		this.setX(x);
@@ -56,6 +57,14 @@ public class Field {
 				,y * FIELDSIZE * Camera.getZ() + Camera.getY()
 				,img.getWidth() * Camera.getZ()
 				,img.getHeight() * Camera.getZ() );
+	}
+
+	public void setActor(Actor actor) {
+		this.actor = actor;
+	}
+
+	public Actor getActor() {
+		return actor;
 	}
 	
 }
