@@ -8,7 +8,6 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.*;
 
-import factory.RenderFactory;
 import game.Field;
 import game.Prog2CraftGame;
 
@@ -39,8 +38,8 @@ public class Prog2Craft3D {
 	 
 	  public static int i;
 	  
-      static Font font;
-      static UnicodeFont unicodeFont; 
+	  public static Prog2CraftGame game = new Prog2CraftGame();
+	  
 	  
 	  /**
 	   * Application init
@@ -62,12 +61,29 @@ public class Prog2Craft3D {
 	    System.exit(0);
 	  }
 	  
-	  public static void renderGame(Prog2CraftGame game) {
+	  public static void renderGame() {
 	      for (Field[] out : game.getSpielfeld())
 	    	  {
 	    	  for (Field in : out)
 	    	  	{
-	    		  RenderFactory.renderField(in);
+	    		  switch(in.getType())
+	    		  {
+	    		  case LEER:
+	    			 GL11.glColor3b((byte)127, (byte)127, (byte)0); break;
+	    		  case FELSIG:
+	    			 GL11.glColor3b((byte)127, (byte)0, (byte)0); break;
+	    		  case GEBIRGE:
+	    			 GL11.glColor3b((byte)0, (byte)127, (byte)0); break;
+	    		  case MEER:
+	    			 GL11.glColor3b((byte)0, (byte)0, (byte)127); break;
+	    		  }
+	    	        GL11.glBegin(GL11.GL_QUADS);
+	                GL11.glVertex2i(in.getX()*100, in.getY()*100);
+	                GL11.glVertex2i(in.getX()*100, in.getY()*100+100);
+	                GL11.glVertex2i(in.getX()*100+100, in.getY()*100+100);
+	                GL11.glVertex2i(in.getX()*100+100, in.getY()*100);
+	                GL11.glEnd();
+
 	    	  	}
 	    	  }
 	  }
@@ -92,14 +108,6 @@ public class Prog2Craft3D {
 	   * Runs the game (the "main loop")
 	   */
 	  private static void run() {
-	 
-		 Prog2CraftGame game = new Prog2CraftGame();
-		 try {
-			unicodeFont = new UnicodeFont("data/arial.ttf", 48, false, false);
-		} catch (SlickException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		  
 	    while (!finished) {
 	      // Always call Window.update(), all the time - it does some behind the
@@ -197,9 +205,9 @@ public class Prog2Craft3D {
 	    // Rotate the square
 		if (left) //  && x > game.getBreite()*100
 				x -= 2*z*1.0f; 
-		if (right && x < 0) 
+		if (right)  //  && x < 0
 				x += 2*z*1.0f; 
-		if (up && y < 0)
+		if (up) // && y < 0
 				y += 2*z*1.0f; 
 		if (down) //  && y > game.getHoehe()*100
 				y -= 2*z*1.0f;
@@ -234,11 +242,7 @@ public class Prog2Craft3D {
 	      // rotate square according to angle
 	//      GL11.glRotatef(angle, 0, 0, 1.0f);
 
-	    renderGame(game);
-	    
-	    GL11.glEnable(GL11.GL_BLEND);
-	    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_SRC_ALPHA);
-	    unicodeFont.drawString(20.0f, 20.0f, "this is a test"); 
+	    renderGame();
 	
 	    GL11.glPopMatrix();
 	  }

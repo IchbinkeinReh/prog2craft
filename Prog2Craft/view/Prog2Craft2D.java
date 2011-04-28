@@ -1,11 +1,5 @@
 package view;
 
-import java.awt.Font;
-
-import org.lwjgl.Sys;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.*;
 
 import game.Field;
@@ -13,20 +7,16 @@ import game.Prog2CraftGame;
 
 public class Prog2Craft2D extends BasicGame{
   
-	  private static float x, y, z = 1.0f;
-	  public static boolean left;
-	  public static boolean right;
-	  public static boolean up;
-	  public static boolean down;
-	  public static boolean zoomin;
-	  public static boolean zoomout;
+	  public static float x = 0.0f , y = 0.0f , z = 1.0f;
 	  
 	  private Image leer;
-	  private Image land;
-
+	  private Image felsig;
+	  private Image gebirge;
+	  private Image meer;
 	  
-      static Font font;
-      static UnicodeFont unicodeFont; 
+	  private Prog2CraftGame game = new Prog2CraftGame();
+	  
+	  static int FIELDSIZE = 100;
 	  
 	  public Prog2Craft2D() {
 			super("Prog2Craft");
@@ -35,95 +25,63 @@ public class Prog2Craft2D extends BasicGame{
 	  public static void main(String[] args) throws SlickException{
 		
 	    AppGameContainer app = new AppGameContainer( new Prog2Craft2D() );
-	    app.setDisplayMode(800, 600, false);
+	    //app.setDisplayMode(1920, 1080, true);
+	    app.setDisplayMode(1024, 800, false);
 	    app.start();
 
 	  }
-	  
-	  
-	  /**
-	   * Do all calculations, handle input, etc.
-	   */
-	  private static void logic(Prog2CraftGame game) {
-	    // Example input handler: we'll check for the ESC key and finish the game instantly when it's pressed
-		while (Keyboard.next()) {
-			
-			switch (Keyboard.getEventKey())
-				{
-				case Keyboard.KEY_ESCAPE:
-					
-					break;
-				case Keyboard.KEY_UP:
-					if (Keyboard.getEventKeyState())
-						up = true;
-					else
-						up = false;
-					break;
-				case Keyboard.KEY_DOWN:
-					if (Keyboard.getEventKeyState())
-						down = true;
-					else
-						down = false;
-					break;
-				case Keyboard.KEY_LEFT:
-					if (Keyboard.getEventKeyState())
-						left = true;
-					else
-						left = false;
-					break;
-				case Keyboard.KEY_RIGHT:
-					if (Keyboard.getEventKeyState())
-						right = true;
-					else
-						right = false;
-					break;	
-				case Keyboard.KEY_W:
-					if (Keyboard.getEventKeyState())
-						zoomin = true;
-					else
-						zoomin = false;
-					break;	
-				case Keyboard.KEY_S:
-					if (Keyboard.getEventKeyState())
-						zoomout = true;
-					else
-						zoomout = false;
-					break;	
-				}
-			}
-			 
-	    // Rotate the square
-		if (left) //  && x > game.getBreite()*100
-				x -= 2*z*1.0f; 
-		if (right && x < 0) 
-				x += 2*z*1.0f; 
-		if (up && y < 0)
-				y += 2*z*1.0f; 
-		if (down) //  && y > game.getHoehe()*100
-				y -= 2*z*1.0f;
-		if (zoomin && z < 1.5f)
-				z += 0.01f;
-		if (zoomout && z > 0.5f)
-				z -= 0.01f;
-
-	   // angle += 2.0f % 360;
-	  }
-
 
 	@Override
 	public void render(GameContainer arg0, Graphics arg1) throws SlickException {
-		land.draw(0, 0);
+	      for (Field[] out : game.getSpielfeld())
+    	  {
+    	  for (Field in : out)
+    	  	{
+    		  switch(in.getType())
+    		  {
+    		  case LEER:
+    			  leer.draw(in.getX()*FIELDSIZE*z+x, in.getY()*FIELDSIZE*z+y, leer.getWidth()*z, leer.getHeight()*z); break;
+    		  case FELSIG:
+    			  felsig.draw(in.getX()*FIELDSIZE*z+x, in.getY()*FIELDSIZE*z+y, felsig.getWidth()*z, felsig.getHeight()*z); break;
+    		  case GEBIRGE:
+    			  gebirge.draw(in.getX()*FIELDSIZE*z+x, in.getY()*FIELDSIZE*z+y, gebirge.getWidth()*z, gebirge.getHeight()*z); break;
+    		  case MEER:
+    			  meer.draw(in.getX()*FIELDSIZE*z+x, in.getY()*FIELDSIZE*z+y, meer.getWidth()*z, meer.getHeight()*z); break;
+    		  }
+    	  	}
+    	  }
 	}
 
 	@Override
-	public void init(GameContainer arg0) throws SlickException {
-	      leer = new Image(this.getClass().getResource("data/wald.jpg").toString());
+	public void init(GameContainer gc) throws SlickException {
+	      leer = new Image("data/wald.jpg");
+	      felsig = new Image("data/felsig.jpg");
+	      gebirge = new Image("data/gebirgig.jpg");
+	      meer = new Image("data/meer.jpg");
+	
+		 gc.getInput().addMouseListener(new MouseL());
+			
 	}
 
 	@Override
-	public void update(GameContainer arg0, int arg1) throws SlickException {
-		// TODO Auto-generated method stub
+	public void update(GameContainer gc, int delta) throws SlickException {
+		  Input input = gc.getInput();
 		
+						if (input.isKeyDown(Input.KEY_ESCAPE)) {
+							gc.exit();
+						}
+						if (input.isKeyDown(Input.KEY_UP)) {
+							y += 2*z*1.0f; 
+						}
+						if (input.isKeyDown(Input.KEY_DOWN)) {
+							y -= 2*z*1.0f;
+						}
+						if (input.isKeyDown(Input.KEY_LEFT)) {
+							x += 2*z*1.0f;
+						}
+						if (input.isKeyDown(Input.KEY_RIGHT)) {
+							x -= 2*z*1.0f;
+						}
 	}
 	  
 	
