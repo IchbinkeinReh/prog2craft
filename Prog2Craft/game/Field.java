@@ -16,11 +16,11 @@ public class Field {
 	private FieldType type;
 	private Image img;
 
-	public Field(FieldType type, int x, int y, String path) {
+	public Field(FieldType type, int x, int y) throws SlickException {
 		this.setX(x);
 		this.setY(y);
 		this.setType(type);
-		this.setImg(path);
+		this.img = new Image(type.getPath());
 	}
 
 	public void setX(int x) {
@@ -49,14 +49,6 @@ public class Field {
 
 	public String toString() {
 		return type.name();
-	}
-	
-	public void setImg (String str) throws SlickException {
-		this.img = new Image(str);
-	}
-	//TODO: img umkrempeln so dass es durch type bestimmt wird!
-	public Image getImg() {
-		return img;
 	}
 	
 	public void render() {
