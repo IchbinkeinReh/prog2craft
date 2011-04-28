@@ -14,7 +14,6 @@ public class Prog2Craft2D extends BasicGame{
 	  
 	  private Prog2CraftGame game = new Prog2CraftGame();
 	  private Render2D render;
-	  
       
 	  public static void main(String[] args) throws SlickException{
 		
@@ -44,7 +43,7 @@ public class Prog2Craft2D extends BasicGame{
 							gc.exit();
 						}
 						if (input.isKeyDown(Input.KEY_UP)) {
-							y += 2*z*1.0f; 
+							y += 2*z*1.0f; //TODO: change to kamera
 						}
 						if (input.isKeyDown(Input.KEY_DOWN)) {
 							y -= 2*z*1.0f;

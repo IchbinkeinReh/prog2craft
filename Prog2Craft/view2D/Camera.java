@@ -1,28 +1,28 @@
-package game;
+package view2D;
 
 public class Camera {
 
-	private float x = 0.0f;
-	private float y = 0.0f;
-	private float z = 1.0f;
+	static private float x = 0.0f;
+	static private float y = 0.0f;
+	static private float z = 1.0f;
 	
-	public void setZ(float z) {
-		this.z = z;
+	static public void setZ(float z) {
+		Camera.z = z;
 	}
-	public float getZ() {
-		return z;
+	static public float getZ() {
+		return Camera.z;
 	}
-	public void setY(float y) {
-		this.y = y;
+	static public void setY(float y) {
+		Camera.y = y;
 	}
-	public float getY() {
-		return y;
+	static public float getY() {
+		return Camera.y;
 	}
-	public void setX(float x) {
-		this.x = x;
+	static public void setX(float x) {
+		Camera.x = x;
 	}
-	public float getX() {
-		return x;
+	static public float getX() {
+		return Camera.x;
 	}
 	
 }
