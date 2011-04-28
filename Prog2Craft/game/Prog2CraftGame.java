@@ -1,10 +1,14 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.newdawn.slick.SlickException;
 
 public class Prog2CraftGame {
 
 	private Map map;
+	private List<Player> spieler = new ArrayList<Player>();
 	
 	public Prog2CraftGame() throws SlickException {
 		
@@ -22,7 +26,6 @@ public class Prog2CraftGame {
 					  "MMGGGGGGGGGGGGGGGGGGMM",
 				 	  "MMMMMMMMMMMMMMMMMMMMMM",
 				 	  "MMMMMMMMMMMMMMMMMMMMMM" )); 
-		//setMap (Map.parse("M"));
 
 	}
 
@@ -50,4 +53,11 @@ public class Prog2CraftGame {
 		map.render();
 	}
 	
+	public void addPlayer() throws SlickException {
+		spieler.add(new Player());
+	}
+	
+	public Player getPlayer(int i) {
+		return spieler.get(i);
+	}
 }

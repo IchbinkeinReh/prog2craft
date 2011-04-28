@@ -53,11 +53,13 @@ public class Field {
 	}
 	
 	public void render() {
-		img.draw(x * FIELDSIZE * Camera.getZ() + Camera.getX() 
-				,y * FIELDSIZE * Camera.getZ() + Camera.getY()
+		float localX = x * FIELDSIZE * Camera.getZ() + Camera.getX();
+		float localY = y * FIELDSIZE * Camera.getZ() + Camera.getY();
+		img.draw(localX
+				,localY
 				,img.getWidth() * Camera.getZ()
 				,img.getHeight() * Camera.getZ() );
-		if (actor != null) actor.render();
+		if (actor != null) actor.render(localX,localY);
 	}
 
 	public void setActor(Actor actor) {

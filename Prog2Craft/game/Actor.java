@@ -1,7 +1,5 @@
 package game;
 
-import static game.Field.FIELDSIZE;
-
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -13,6 +11,7 @@ public class Actor {
 	private ActorType type;
 	private Field field;
 	private Image img;
+	private int leben;
 	
 	public Actor(Field field, ActorType type) throws SlickException{
 	this.field = field;
@@ -41,11 +40,23 @@ public class Actor {
 		}
 	}
 	
-	public void render() {
-		img.draw(field.getX() * FIELDSIZE * Camera.getZ() + Camera.getX() 
-				,field.getY() * FIELDSIZE * Camera.getZ() + Camera.getY()
+	public Field getField() {
+		return field;
+	}
+	
+	public void render(float localX, float localY) {
+		img.draw(localX 
+				,localY
 				,img.getWidth() * Camera.getZ()
 				,img.getHeight() * Camera.getZ() );
+	}
+
+	public void setLeben(int leben) {
+		this.leben = leben;
+	}
+
+	public int getLeben() {
+		return leben;
 	}
 	
 	

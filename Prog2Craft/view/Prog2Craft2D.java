@@ -40,9 +40,10 @@ public class Prog2Craft2D extends BasicGame{
 			  }
 			  catch (SlickException e) {
 			  }  
-			  
+		 game.addPlayer();
 		 Field f1 = game.getMap().getField(0, 0);
 		 f1.setActor(new Actor(f1, ActorType.INFANTARIE));
+		 game.getPlayer(0).select(f1.getActor());
 		 
 		 gc.getInput().addMouseListener(new MouseL());
 		 gc.setTargetFrameRate(60);
