@@ -1,12 +1,9 @@
-package view;
-
-import java.awt.Font;
+package view3D2;
 
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.*;
 
 import game.Field;
 import game.Prog2CraftGame;

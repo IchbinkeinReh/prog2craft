@@ -6,6 +6,7 @@ import enums.FieldType;
 
 public class Field {
 	
+	public static int FIELDSIZE = 100;
 	private int x, y;
 	private FieldType type;
 
