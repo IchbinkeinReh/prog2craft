@@ -57,6 +57,7 @@ public class Field {
 				,y * FIELDSIZE * Camera.getZ() + Camera.getY()
 				,img.getWidth() * Camera.getZ()
 				,img.getHeight() * Camera.getZ() );
+		if (actor != null) actor.render();
 	}
 
 	public void setActor(Actor actor) {

@@ -2,7 +2,11 @@ package view;
 
 import org.newdawn.slick.*;
 
+import enums.ActorType;
 
+
+import game.Actor;
+import game.Field;
 import game.Prog2CraftGame;
 
 public class Prog2Craft2D extends BasicGame{
@@ -36,6 +40,10 @@ public class Prog2Craft2D extends BasicGame{
 			  }
 			  catch (SlickException e) {
 			  }  
+			  
+		 Field f1 = game.getMap().getField(0, 0);
+		 f1.setActor(new Actor(f1, ActorType.INFANTARIE));
+		 
 		 gc.getInput().addMouseListener(new MouseL());
 		 gc.setTargetFrameRate(60);
 		 gc.setMultiSample(4);
