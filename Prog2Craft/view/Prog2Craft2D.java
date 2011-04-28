@@ -1,9 +1,7 @@
-package view2D;
+package view;
 
 import org.newdawn.slick.*;
 
-import view.Camera;
-import view.MouseL;
 
 import game.Prog2CraftGame;
 

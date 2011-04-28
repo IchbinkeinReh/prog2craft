@@ -1,4 +1,4 @@
-package view3D2;
+package view;
 
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
