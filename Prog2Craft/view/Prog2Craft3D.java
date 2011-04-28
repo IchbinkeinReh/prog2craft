@@ -4,6 +4,7 @@ import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.SlickException;
 
 import game.Field;
 import game.Prog2CraftGame;
@@ -35,7 +36,7 @@ public class Prog2Craft3D {
 	 
 	  public static int i;
 	  
-	  public static Prog2CraftGame game = new Prog2CraftGame();
+	  private static Prog2CraftGame game;
 	  
 	  
 	  /**
@@ -43,7 +44,14 @@ public class Prog2Craft3D {
 	   * @param args Commandline args
 	   */
 	  public static void main(String[] args) {
-	    boolean fullscreen = (args.length == 1 && args[0].equals("-fullscreen"));
+		  try {
+			  game = new Prog2CraftGame();
+			 
+			  }
+			  catch (SlickException e) {
+			  }  
+		  
+		boolean fullscreen = (args.length == 1 && args[0].equals("-fullscreen"));
 	    Keyboard.enableRepeatEvents(true);
 	    fullscreen = true;
 	    try {
