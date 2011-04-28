@@ -2,6 +2,9 @@ package view2D;
 
 import org.newdawn.slick.*;
 
+import view.Camera;
+import view.MouseL;
+
 import game.Prog2CraftGame;
 
 public class Prog2Craft2D extends BasicGame{
@@ -18,7 +21,7 @@ public class Prog2Craft2D extends BasicGame{
 		 
 	    AppGameContainer app = new AppGameContainer( new Prog2Craft2D() );
 	    //app.setDisplayMode(1920, 1080, true);
-	    app.setDisplayMode(1024, 800, false);
+	    app.setDisplayMode(800, 600, false);
 	    app.start();
 
 	  }

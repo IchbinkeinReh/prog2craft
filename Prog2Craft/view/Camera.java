@@ -1,4 +1,4 @@
-package view2D;
+package view;
 
 public class Camera {
 

@@ -1,4 +1,4 @@
-package view2D;
+package view;
 
 import org.newdawn.slick.Input;
 import org.newdawn.slick.MouseListener;

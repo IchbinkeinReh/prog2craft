@@ -2,7 +2,7 @@ package enums;
 
 public enum FieldType {
 	
-	LEER("data/wald"), FELSIG("data/felsig"), GEBIRGE("data/gebirgig"), MEER("data/meer");
+	LEER("data/wald.jpg"), FELSIG("data/felsig.jpg"), GEBIRGE("data/gebirgig.jpg"), MEER("data/meer.jpg");
 	
 	private final String str;
 	

@@ -3,7 +3,7 @@ package game;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import view2D.Camera;
+import view.Camera;
 
 import enums.FieldType;
 
