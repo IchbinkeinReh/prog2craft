@@ -51,6 +51,7 @@ public class Prog2CraftGame {
 
 	public void render() {
 		map.render();
+		spieler.get(0).render();
 	}
 	
 	public void addPlayer() throws SlickException {

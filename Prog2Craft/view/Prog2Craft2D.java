@@ -54,7 +54,7 @@ public class Prog2Craft2D extends BasicGame{
 
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
-		KeyboardL.input(gc, delta);
+		KeyboardL.input(gc, delta, game);
 	}
 	  
 	

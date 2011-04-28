@@ -24,13 +24,13 @@ public class Player {
 		for (Actor act : selected) {
 			float localX = act.getField().getX() * FIELDSIZE * Camera.getZ() + Camera.getX();
 			float localY = act.getField().getY() * FIELDSIZE * Camera.getZ() + Camera.getY();
-			health.draw(localX ,localY
+			health.draw(localX ,localY + 3
 			,health.getWidth() * Camera.getZ()
 			,health.getHeight() * Camera.getZ() );
 			for (int i = 1; i <= act.getLeben(); i++) {
 				gruen.draw(
 						 localX + 50 + i
-						,localY
+						,localY + 3
 						,health.getWidth() * Camera.getZ()
 						,health.getHeight() * Camera.getZ() );
 			}

@@ -1,11 +1,14 @@
 package view;
 
+import game.Actor;
+import game.Prog2CraftGame;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 
 public class KeyboardL {
 	
-		public static void input(GameContainer gc, int delta) { 
+		public static void input(GameContainer gc, int delta, Prog2CraftGame game) { 
 		Input input = gc.getInput();
 
 			if (input.isKeyDown(Input.KEY_ESCAPE)) {
@@ -30,6 +33,14 @@ public class KeyboardL {
 				Camera.setZ(Camera.getZ() * 1.01f );
 			}
 			
+			if (input.isKeyDown(Input.KEY_0)) {
+				Actor actor = game.getMap().getField(0, 0).getActor();
+				game.getPlayer(0).unselect(actor);
+			}
+			if (input.isKeyDown(Input.KEY_1)) {
+				Actor actor = game.getMap().getField(0, 0).getActor();
+				game.getPlayer(0).select(actor);
+			}
 		
 	}
 
