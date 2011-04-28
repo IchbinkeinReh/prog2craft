@@ -19,7 +19,7 @@ public class Prog2Craft2D extends BasicGame{
 	    AppGameContainer app = new AppGameContainer( new Prog2Craft2D() );
 	    //app.setDisplayMode(1920, 1080, true);
 	    //app.setDisplayMode(800, 600, false);
-	    app.setDisplayMode(1024, 600, true);
+	    app.setDisplayMode(1024, 600, false);
 	    app.start();
 
 	  }
