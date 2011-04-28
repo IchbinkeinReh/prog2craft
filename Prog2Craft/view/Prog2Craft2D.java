@@ -13,6 +13,7 @@ public class Prog2Craft2D extends BasicGame{
 		}
 	  
 	  private Prog2CraftGame game;
+	  private KeyboardL key;
 	
 	  
 	  public static void main(String[] args) throws SlickException{
@@ -43,23 +44,7 @@ public class Prog2Craft2D extends BasicGame{
 
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
-		  Input input = gc.getInput();
-		
-						if (input.isKeyDown(Input.KEY_ESCAPE)) {
-							gc.exit();
-						}
-						if (input.isKeyDown(Input.KEY_UP)) {
-							Camera.setY(Camera.getY() + 2 * Camera.getZ() * 1.0f);
-						}
-						if (input.isKeyDown(Input.KEY_DOWN)) {
-							Camera.setY(Camera.getY() - 2 * Camera.getZ() * 1.0f);
-						}
-						if (input.isKeyDown(Input.KEY_LEFT)) {
-							Camera.setX(Camera.getX() + 2 * Camera.getZ() * 1.0f);
-						}
-						if (input.isKeyDown(Input.KEY_RIGHT)) {
-							Camera.setX(Camera.getX() - 2 * Camera.getZ() * 1.0f);
-						}
+		KeyboardL.input(gc);
 	}
 	  
 	

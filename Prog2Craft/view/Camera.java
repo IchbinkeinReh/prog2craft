@@ -4,7 +4,7 @@ public class Camera {
 
 	static private float x = 0.0f;
 	static private float y = 0.0f;
-	static private float z = 1.0f;
+	static private float z = 0.7f;
 	
 	static public void setZ(float z) {
 		Camera.z = z;
