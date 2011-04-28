@@ -13,8 +13,6 @@ public class Prog2Craft2D extends BasicGame{
 		}
 	  
 	  private Prog2CraftGame game;
-	  private KeyboardL key;
-	
 	  
 	  public static void main(String[] args) throws SlickException{
 		 
@@ -34,7 +32,7 @@ public class Prog2Craft2D extends BasicGame{
 	public void init(GameContainer gc) throws SlickException {	
 		 try {
 			  game = new Prog2CraftGame();
-			 
+			 gc.setTargetFrameRate(60);
 			  }
 			  catch (SlickException e) {
 			  }  
@@ -44,7 +42,7 @@ public class Prog2Craft2D extends BasicGame{
 
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
-		KeyboardL.input(gc);
+		KeyboardL.input(gc, delta);
 	}
 	  
 	
