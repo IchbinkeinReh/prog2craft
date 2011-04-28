@@ -1,9 +1,9 @@
 package game;
 
-import static game.Field.FIELDSIZE;
-
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+
+import view2D.Camera;
 
 import enums.FieldType;
 
@@ -52,17 +52,10 @@ public class Field {
 	}
 	
 	public void render() {
-	  switch(type)
-			  { //TODO: change x,y,z
-			  case LEER:
-				  leer.draw(x*FIELDSIZE*z+x, y*FIELDSIZE*z+y, leer.getWidth()*z, leer.getHeight()*z); break;
-			  case FELSIG:
-				  felsig.draw(x*FIELDSIZE*z+x, y*FIELDSIZE*z+y, felsig.getWidth()*z, felsig.getHeight()*z); break;
-			  case GEBIRGE:
-				  gebirge.draw(x*FIELDSIZE*z+x, y*FIELDSIZE*z+y, gebirge.getWidth()*z, gebirge.getHeight()*z); break;
-			  case MEER:
-				  meer.draw(x*FIELDSIZE*z+x, y*FIELDSIZE*z+y, meer.getWidth()*z, meer.getHeight()*z); break;
-			  }
+		img.draw(x * FIELDSIZE * Camera.getZ() + Camera.getX() 
+				,y * FIELDSIZE * Camera.getZ() + Camera.getY()
+				,img.getWidth() * Camera.getZ()
+				,img.getHeight() * Camera.getZ() );
 	}
 	
 }

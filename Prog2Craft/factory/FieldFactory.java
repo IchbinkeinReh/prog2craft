@@ -1,11 +1,13 @@
 package factory;
 
+import org.newdawn.slick.SlickException;
+
 import enums.FieldType;
 import game.Field;
 
 public class FieldFactory {
 	
-	public static Field create (char c, int x, int y) {
+	public static Field create (char c, int x, int y) throws SlickException {
 		switch(c)
 		{
 		case 'L':

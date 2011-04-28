@@ -1,10 +1,12 @@
 package game;
 
+import org.newdawn.slick.SlickException;
+
 public class Prog2CraftGame {
 
 	private Map map;
 	
-	public Prog2CraftGame() {
+	public Prog2CraftGame() throws SlickException {
 		
 	 setMap(Map.parse("MMMMMMMMMMMMMMMMMMMMMM",
 				 	  "MMMMMMMMMMMMMMMMMMMMMM",
@@ -42,6 +44,10 @@ public class Prog2CraftGame {
 	
 	public int getHoehe() {
 		return map.getSpielfeld().length;
+	}
+
+	public void render() {
+		map.render();
 	}
 	
 }

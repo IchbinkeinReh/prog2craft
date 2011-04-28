@@ -1,5 +1,7 @@
 package game;
 
+import org.newdawn.slick.SlickException;
+
 import factory.FieldFactory;
 
 public class Map {
@@ -11,7 +13,7 @@ public class Map {
 	}
 	
 	
-	public static Map parse(String... mapDescription) {
+	public static Map parse(String... mapDescription) throws SlickException {
 		int hoehe = mapDescription.length;
 		int laenge = mapDescription[0].length();
 		Field[][] map = new Field[laenge][hoehe];
@@ -41,6 +43,16 @@ public class Map {
 
 	public Field[][] getSpielfeld() {
 		return spielfeld;
+	}
+	
+	public void render() {
+	    for (Field[] out : spielfeld)
+	  	  {
+	  	  for (Field in : out)
+	  	  	{
+	  		  in.render();
+	  	  	}
+	  	  }
 	}
 	
 }
