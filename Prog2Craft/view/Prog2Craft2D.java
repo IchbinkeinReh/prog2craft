@@ -18,7 +18,8 @@ public class Prog2Craft2D extends BasicGame{
 		 
 	    AppGameContainer app = new AppGameContainer( new Prog2Craft2D() );
 	    //app.setDisplayMode(1920, 1080, true);
-	    app.setDisplayMode(800, 600, false);
+	    //app.setDisplayMode(800, 600, false);
+	    app.setDisplayMode(1024, 600, true);
 	    app.start();
 
 	  }
@@ -32,11 +33,13 @@ public class Prog2Craft2D extends BasicGame{
 	public void init(GameContainer gc) throws SlickException {	
 		 try {
 			  game = new Prog2CraftGame();
-			 gc.setTargetFrameRate(60);
 			  }
 			  catch (SlickException e) {
 			  }  
 		 gc.getInput().addMouseListener(new MouseL());
+		 gc.setTargetFrameRate(60);
+		 gc.setMultiSample(4);
+		 gc.setVSync(true);
 			
 	}
 
