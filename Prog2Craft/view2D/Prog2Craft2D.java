@@ -27,7 +27,7 @@ public class Prog2Craft2D extends BasicGame{
 
 	@Override
 	public void render(GameContainer gc, Graphics g) {
-	  render.renderGame(gc);gc.
+	  render.renderGame(gc);
 	}
 
 	@Override
