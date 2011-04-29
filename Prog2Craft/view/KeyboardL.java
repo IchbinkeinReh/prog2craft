@@ -33,6 +33,12 @@ public class KeyboardL {
 				Camera.setZ(Camera.getZ() * 1.01f );
 			}
 			
+		/*	if (input.isMousePressed(0)) {
+				Camera.getX() * Camera.getZ() input.getMouseX() 
+			}*/ //TODO: impl feldberechnung
+			
+			
+			
 			if (input.isKeyDown(Input.KEY_0)) {
 				Actor actor = game.getMap().getField(0, 0).getActor();
 				game.getPlayer(0).unselect(actor);

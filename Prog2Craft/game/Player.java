@@ -27,10 +27,10 @@ public class Player {
 			float localX = act.getField().getX() * FIELDSIZE * Camera.getZ() + Camera.getX();
 			float localY = act.getField().getY() * FIELDSIZE * Camera.getZ() + Camera.getY();
 			int offset = (100-health.getWidth())/2;
-			health.draw(localX + offset * Camera.getZ(),localY + 2 * Camera.getZ()
+			health.draw(localX + (offset-1) * Camera.getZ(),localY + 2 * Camera.getZ()
 			,health.getWidth() * Camera.getZ()
 			,health.getHeight() * Camera.getZ() );
-			int balkenbreite = (health.getWidth()-1);
+			int balkenbreite = (health.getWidth()-2);
 			float aktleben = act.getLeben();
 			int maxleben = act.getType().getLeben();
 			int pixel = (int)( ( aktleben / maxleben ) * balkenbreite );

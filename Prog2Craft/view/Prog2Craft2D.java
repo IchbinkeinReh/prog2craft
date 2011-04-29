@@ -17,6 +17,7 @@ public class Prog2Craft2D extends BasicGame{
 		}
 	  
 	  private Prog2CraftGame game;
+	  public static int breite, hoehe;
 	  
 	  public static void main(String[] args) throws SlickException{
 		 
@@ -24,6 +25,8 @@ public class Prog2Craft2D extends BasicGame{
 	    //app.setDisplayMode(1920, 1080, true);
 	    //app.setDisplayMode(800, 600, false);
 	    app.setDisplayMode(1024, 600, false);
+	    breite = app.getWidth();
+	    hoehe = app.getHeight();
 	    app.start();
 
 	  }

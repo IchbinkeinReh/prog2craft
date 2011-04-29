@@ -61,8 +61,8 @@ public class MouseL implements MouseListener {
 
 	@Override
 	public void mouseWheelMoved(int arg0) {
-		if (arg0 > 0) 	 Camera.setZ( Camera.getZ() * 0.95f ) ; 
-		else 			 Camera.setZ( Camera.getZ() * 1.05f );
+		if (arg0 > 0) 	 Camera.setZ( Camera.getZ() * 1.05f ) ; 
+		else 			 Camera.setZ( Camera.getZ() * 0.95f );
 		
 	}
 
