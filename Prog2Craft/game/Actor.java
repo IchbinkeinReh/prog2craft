@@ -16,6 +16,7 @@ public class Actor {
 	public Actor(Field field, ActorType type) throws SlickException{
 	this.field = field;
 	this.type = type;
+	this.leben = type.getLeben();
 	field.setActor(this);
 	img = new Image(type.getStr());
 	}

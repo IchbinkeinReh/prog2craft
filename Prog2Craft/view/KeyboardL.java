@@ -41,6 +41,14 @@ public class KeyboardL {
 				Actor actor = game.getMap().getField(0, 0).getActor();
 				game.getPlayer(0).select(actor);
 			}
+			if (input.isKeyDown(Input.KEY_2)) {
+				Actor actor = game.getMap().getField(0, 0).getActor();
+				actor.setLeben(actor.getLeben()-1);
+			}
+			if (input.isKeyDown(Input.KEY_3)) {
+				Actor actor = game.getMap().getField(0, 0).getActor();
+				actor.setLeben(actor.getLeben()+1);
+			}
 		
 	}
 
