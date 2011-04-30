@@ -4,8 +4,13 @@ import static game.Field.FIELDSIZE;
 
 import java.util.HashSet;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
+
+import enums.Mode;
 
 import view.Camera;
 
@@ -15,14 +20,18 @@ public class Player {
 	private Image health;
 	private Image gruen;
 	private Image rot;
+	private Rectangle selectrahmen;
+	private Mode mode;
+	
 
 	public Player() throws SlickException {
 		health = new Image("data/health.png");
 		gruen = new Image("data/gruen.png");
 		rot = new Image("data/rot.png");
+		selectrahmen = new Rectangle(0, 0, 0, 0);
 	}
 	
-	public void render() {
+	public void render(Graphics g) {
 		for (Actor act : selected) {
 			float localX = act.getField().getX() * FIELDSIZE * Camera.getZ() + Camera.getX();
 			float localY = act.getField().getY() * FIELDSIZE * Camera.getZ() + Camera.getY();
@@ -56,5 +65,13 @@ public class Player {
 	
 	public void deselectall() {
 		selected.clear();
+	}
+
+	public void setMode(Mode mode) {
+		this.mode = mode;
+	}
+
+	public Mode getMode() {
+		return mode;
 	}
 }

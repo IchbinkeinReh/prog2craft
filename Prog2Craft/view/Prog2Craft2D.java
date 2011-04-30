@@ -26,14 +26,14 @@ public class Prog2Craft2D extends BasicGame{
 	    //app.setDisplayMode(800, 600, false);
 	    app.setDisplayMode(1024, 600, false);
 	    breite = app.getWidth();
-	    hoehe = app.getHeight();
+	    hoehe = app.getHeight(); //TODO: camera als object weg von static
 	    app.start();
 
 	  }
 
 	@Override
 	public void render(GameContainer gc, Graphics g) {
-	  game.render();
+	  game.render(g);
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class Prog2Craft2D extends BasicGame{
 		 Field f2 = game.getMap().getField(1, 1);
 		 f2.setActor(new Actor(f2, ActorType.INFANTARIE));
 		 
-		 gc.getInput().addMouseListener(new MouseL());
+		 gc.getInput().addMouseListener(new MouseL(game, gc));
 		 gc.setTargetFrameRate(60);
 		 gc.setMultiSample(4);
 		 gc.setVSync(true);

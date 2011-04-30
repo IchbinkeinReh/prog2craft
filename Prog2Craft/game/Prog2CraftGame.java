@@ -3,12 +3,16 @@ package game;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+
+import view.Camera;
 
 public class Prog2CraftGame {
 
 	private Map map;
 	private List<Player> spieler = new ArrayList<Player>();
+	private Camera cam;
 	
 	public Prog2CraftGame() throws SlickException {
 		
@@ -49,9 +53,9 @@ public class Prog2CraftGame {
 		return map.getSpielfeld().length;
 	}
 
-	public void render() {
+	public void render(Graphics g) {
 		map.render();
-		spieler.get(0).render();
+		spieler.get(0).render(g);
 	}
 	
 	public void addPlayer() throws SlickException {
@@ -60,5 +64,13 @@ public class Prog2CraftGame {
 	
 	public Player getPlayer(int i) {
 		return spieler.get(i);
+	}
+
+	public void setCam(Camera cam) {
+		this.cam = cam;
+	}
+
+	public Camera getCam() {
+		return cam;
 	}
 }
