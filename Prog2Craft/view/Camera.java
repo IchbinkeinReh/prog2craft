@@ -9,12 +9,8 @@ public class Camera {
 	static private float z = 0.5f;
 	
 	static public void setZ(float zneu) {
-		System.out.println(Camera.x);
-		System.out.println(Camera.y);
-		System.out.println(Camera.z);
-		System.out.println();
-		Camera.x = Camera.x + (Camera.x + breite) * (Camera.z - zneu);
-		Camera.y = Camera.y + (Camera.y + hoehe) * (Camera.z - zneu);
+		Camera.x += (-Camera.x + breite/2)  / Camera.z * (Camera.z - zneu);
+		Camera.y += (-Camera.y + hoehe/2) / Camera.z * (Camera.z - zneu);
 		Camera.z = zneu;
 	}
 	static public float getZ() {

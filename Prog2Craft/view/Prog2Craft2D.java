@@ -46,12 +46,14 @@ public class Prog2Craft2D extends BasicGame{
 		 game.addPlayer();
 		 Field f1 = game.getMap().getField(0, 0);
 		 f1.setActor(new Actor(f1, ActorType.INFANTARIE));
-		 game.getPlayer(0).select(f1.getActor());
+		 Field f2 = game.getMap().getField(1, 1);
+		 f2.setActor(new Actor(f2, ActorType.INFANTARIE));
 		 
 		 gc.getInput().addMouseListener(new MouseL());
 		 gc.setTargetFrameRate(60);
 		 gc.setMultiSample(4);
 		 gc.setVSync(true);
+		 gc.getGraphics().setAntiAlias(true);
 			
 	}
 

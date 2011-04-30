@@ -42,7 +42,7 @@ public class Player {
 			,localY + 3 * Camera.getZ()
 			,(balkenbreite - pixel) * Camera.getZ()
 			,rot.getHeight() * Camera.getZ());
-
+			
 		}
 	}
 	
@@ -52,5 +52,9 @@ public class Player {
 	
 	public void unselect(Actor actor) {
 		selected.remove(actor);
+	}
+	
+	public void deselectall() {
+		selected.clear();
 	}
 }
