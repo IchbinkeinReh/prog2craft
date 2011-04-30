@@ -45,7 +45,7 @@ public class Prog2Craft3D {
 	   */
 	  public static void main(String[] args) {
 		  try {
-			  game = new Prog2CraftGame();
+			  game = new Prog2CraftGame(null, null);
 			 
 			  }
 			  catch (SlickException e) {

@@ -3,10 +3,13 @@ package view;
 import org.newdawn.slick.*;
 
 import enums.ActorType;
+import enums.Modus;
 
 
 import game.Actor;
+import game.Config;
 import game.Field;
+import game.Mode;
 import game.Prog2CraftGame;
 
 public class Prog2Craft2D extends BasicGame{
@@ -18,33 +21,33 @@ public class Prog2Craft2D extends BasicGame{
 	  
 	  private Prog2CraftGame game;
 	  private KeyboardL keyL; 
-	  public static int breite, hoehe;
+	  private Mode mode = new Mode(Modus.NOTHING);
 	  
-	  public void main(String[] args) throws SlickException{
-		game = new Prog2CraftGame();
+	  
+	  public static void main (String[] args) throws SlickException{
+		Config conf = new Config(); 
 	    AppGameContainer app = new AppGameContainer( new Prog2Craft2D() );
-	    app.setDisplayMode(game.getConfig().getBreite(), game.getConfig().getHoehe(), game.getConfig().isFullscreen());
-	    breite = app.getWidth();
-	    hoehe = app.getHeight(); 
+	    int breite = conf.getBreite();
+	    int hoehe = conf.getHoehe();
+	    app.setDisplayMode(breite, hoehe, conf.isFullscreen());
 	    app.start();
-
 	  }
 
 	@Override
 	public void render(GameContainer gc, Graphics g) {
-	  game.render(g, game.getCam());
+	  game.render(g, game.getCam(), gc);
 	}
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {	
-		 
+		 game = new Prog2CraftGame(gc, mode);
 		 Field f1 = game.getMap().getField(0, 0);
 		 f1.setActor(new Actor(f1, ActorType.INFANTARIE));
 		 Field f2 = game.getMap().getField(1, 1);
 		 f2.setActor(new Actor(f2, ActorType.INFANTARIE));
 		 
-		 gc.getInput().addMouseListener(new MouseL(game, gc));
-		 keyL = new KeyboardL(game, gc);
+		 gc.getInput().addMouseListener(new MouseL(game, gc, mode));
+		 keyL = new KeyboardL(game, gc, mode);
 		 gc.setTargetFrameRate(60);
 		 gc.setMultiSample(4);
 		 gc.setVSync(true);

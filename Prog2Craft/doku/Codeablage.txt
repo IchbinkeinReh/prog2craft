@@ -1,0 +1,6 @@
+               
+               Für schrift:
+               
+                  String pressEnterToStart = "[PRESS ENTER TO START]";
+
+                  SCORE_TRUE_TYPE_FONT.drawString(WIDTH / 2 - SCORE_TRUE_TYPE_FONT.getWidth(pressEnterToStart) / 2, HEIGHT/2 -SCORE_TRUE_TYPE_FONT.getHeight(pressEnterToStart)/2 ,pressEnterToStart);

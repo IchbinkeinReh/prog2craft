@@ -12,7 +12,7 @@ public int getHoehe() {
 }
 
 public boolean isFullscreen() {
-	return true;
+	return false;
 }
 
 

@@ -3,6 +3,7 @@ package game;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
@@ -13,9 +14,9 @@ public class Prog2CraftGame {
 	private Map map;
 	private List<Player> spieler = new ArrayList<Player>();
 	private Camera cam;
-	private Config conf;
+	private Mode mode;
 	
-	public Prog2CraftGame() throws SlickException {
+	public Prog2CraftGame(GameContainer gc, Mode mode) throws SlickException {
 		
 	 setMap(Map.parse("MMMMMMMMMMMMMMMMMMMMMM",
 				 	  "MMMMMMMMMMMMMMMMMMMMMM",
@@ -31,9 +32,9 @@ public class Prog2CraftGame {
 					  "MMGGGGGGGGGGGGGGGGGGMM",
 				 	  "MMMMMMMMMMMMMMMMMMMMMM",
 				 	  "MMMMMMMMMMMMMMMMMMMMMM" )); 
-	 this.cam = new Camera();
+	 this.cam = new Camera(gc);
+	 this.mode = mode;
 	 addPlayer();
-	 this.setConfig(new Config());
 	}
 
 	public void setMap(Map map) {
@@ -57,7 +58,7 @@ public class Prog2CraftGame {
 	}
 	
 	public void addPlayer() throws SlickException {
-		spieler.add(new Player());
+		spieler.add(new Player(mode));
 	}
 	
 	public Player getPlayer(int i) {
@@ -72,17 +73,9 @@ public class Prog2CraftGame {
 		return cam;
 	}
 
-	public void setConfig(Config conf) {
-		this.conf = conf;
-	}
-
-	public Config getConfig() {
-		return conf;
-	}
-
-	public void render(Graphics g, Camera cam) {
+	public void render(Graphics g, Camera cam, GameContainer gc) {
 		map.render(g,cam);
-		spieler.get(0).render(g,cam);
+		spieler.get(0).render(g,cam,gc);
 	}
 
 }

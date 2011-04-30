@@ -2,15 +2,23 @@ package view;
 
 import static view.Prog2Craft2D.*;
 
+import org.newdawn.slick.GameContainer;
+
 public class Camera {
 
 	private float x = 0.0f;
 	private float y = 0.0f;
 	private float z = 0.5f;
+	private int breite, hoehe;
 	
+	public Camera(GameContainer gc) {
+		this.breite = gc.getWidth();
+		this.hoehe = gc.getHeight();
+	}
+
 	public void setZ(float zneu) {
 		x += ((-x + breite/2)  / z * (z - zneu));
-		y -= ((-y + hoehe/2) / z * (z - zneu));
+		y += ((-y + hoehe/2) / z * (z - zneu));
 		z = zneu;
 	}
 	

@@ -1,6 +1,7 @@
 package view;
 
 import game.Actor;
+import game.Mode;
 import game.Prog2CraftGame;
 
 import org.newdawn.slick.GameContainer;
@@ -11,7 +12,7 @@ public class KeyboardL {
 		private Camera cam;
 		private Input input;
 		
-		public KeyboardL(Prog2CraftGame game, GameContainer gc) {
+		public KeyboardL(Prog2CraftGame game, GameContainer gc, Mode mode) {
 		this.cam = game.getCam();
 		this.input = gc.getInput();
 		}
