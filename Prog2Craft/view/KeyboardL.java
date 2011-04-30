@@ -8,29 +8,36 @@ import org.newdawn.slick.Input;
 
 public class KeyboardL {
 	
-		public static void input(GameContainer gc, int delta, Prog2CraftGame game) { 
-		Input input = gc.getInput();
+		private Camera cam;
+		private Input input;
+		
+		public KeyboardL(Prog2CraftGame game, GameContainer gc) {
+		this.cam = game.getCam();
+		this.input = gc.getInput();
+		}
+
+		public void input(GameContainer gc, int delta, Prog2CraftGame game) { 
 
 			if (input.isKeyDown(Input.KEY_ESCAPE)) {
 				gc.exit();
 			}
 			if (input.isKeyDown(Input.KEY_UP)) {
-				Camera.setY(Camera.getY() + 10);
+				cam.setY(cam.getY() + 10);
 			}
 			if (input.isKeyDown(Input.KEY_DOWN)) {
-				Camera.setY(Camera.getY() - 10);
+				cam.setY(cam.getY() - 10);
 			}
 			if (input.isKeyDown(Input.KEY_LEFT)) {
-				Camera.setX(Camera.getX() + 10); 
+				cam.setX(cam.getX() + 10); 
 			}
 			if (input.isKeyDown(Input.KEY_RIGHT)) {
-				Camera.setX(Camera.getX() - 10);
+				cam.setX(cam.getX() - 10);
 			}
 			if (input.isKeyDown(Input.KEY_MINUS)) {
-				Camera.setZ(Camera.getZ() * 0.99f );
+				cam.setZ(cam.getZ() * 0.99f );
 			}
 			if (input.isKeyDown(Input.KEY_EQUALS)) {
-				Camera.setZ(Camera.getZ() * 1.01f );
+				cam.setZ(cam.getZ() * 1.01f );
 			}
 			
 			

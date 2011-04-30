@@ -4,29 +4,35 @@ import static view.Prog2Craft2D.*;
 
 public class Camera {
 
-	static private float x = 0.0f;
-	static private float y = 0.0f;
-	static private float z = 0.5f;
+	private float x = 0.0f;
+	private float y = 0.0f;
+	private float z = 0.5f;
 	
-	static public void setZ(float zneu) {
-		Camera.x += (-Camera.x + breite/2)  / Camera.z * (Camera.z - zneu);
-		Camera.y += (-Camera.y + hoehe/2) / Camera.z * (Camera.z - zneu);
-		Camera.z = zneu;
+	public void setZ(float zneu) {
+		x += ((-x + breite/2)  / z * (z - zneu));
+		y -= ((-y + hoehe/2) / z * (z - zneu));
+		z = zneu;
 	}
-	static public float getZ() {
-		return Camera.z;
+	
+	public float getZ() {
+		return z;
 	}
-	static public void setY(float y) {
-		Camera.y = y;
+
+	public void setX(float x) {
+		this.x = x;
 	}
-	static public float getY() {
-		return Camera.y;
+
+	public float getX() {
+		return x;
 	}
-	static public void setX(float x) {
-		Camera.x = x;
+
+	public void setY(float y) {
+		this.y = y;
 	}
-	static public float getX() {
-		return Camera.x;
+
+	public float getY() {
+		return y;
 	}
+
 	
 }

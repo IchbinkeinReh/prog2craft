@@ -13,6 +13,7 @@ public class Prog2CraftGame {
 	private Map map;
 	private List<Player> spieler = new ArrayList<Player>();
 	private Camera cam;
+	private Config conf;
 	
 	public Prog2CraftGame() throws SlickException {
 		
@@ -30,7 +31,9 @@ public class Prog2CraftGame {
 					  "MMGGGGGGGGGGGGGGGGGGMM",
 				 	  "MMMMMMMMMMMMMMMMMMMMMM",
 				 	  "MMMMMMMMMMMMMMMMMMMMMM" )); 
-
+	 this.cam = new Camera();
+	 addPlayer();
+	 this.setConfig(new Config());
 	}
 
 	public void setMap(Map map) {
@@ -52,11 +55,6 @@ public class Prog2CraftGame {
 	public int getHoehe() {
 		return map.getSpielfeld().length;
 	}
-
-	public void render(Graphics g) {
-		map.render();
-		spieler.get(0).render(g);
-	}
 	
 	public void addPlayer() throws SlickException {
 		spieler.add(new Player());
@@ -73,4 +71,18 @@ public class Prog2CraftGame {
 	public Camera getCam() {
 		return cam;
 	}
+
+	public void setConfig(Config conf) {
+		this.conf = conf;
+	}
+
+	public Config getConfig() {
+		return conf;
+	}
+
+	public void render(Graphics g, Camera cam) {
+		map.render(g,cam);
+		spieler.get(0).render(g,cam);
+	}
+
 }

@@ -17,39 +17,34 @@ public class Prog2Craft2D extends BasicGame{
 		}
 	  
 	  private Prog2CraftGame game;
+	  private KeyboardL keyL; 
 	  public static int breite, hoehe;
 	  
-	  public static void main(String[] args) throws SlickException{
-		 
+	  public void main(String[] args) throws SlickException{
+		game = new Prog2CraftGame();
 	    AppGameContainer app = new AppGameContainer( new Prog2Craft2D() );
-	    //app.setDisplayMode(1920, 1080, true);
-	    //app.setDisplayMode(800, 600, false);
-	    app.setDisplayMode(1024, 600, false);
+	    app.setDisplayMode(game.getConfig().getBreite(), game.getConfig().getHoehe(), game.getConfig().isFullscreen());
 	    breite = app.getWidth();
-	    hoehe = app.getHeight(); //TODO: camera als object weg von static
+	    hoehe = app.getHeight(); 
 	    app.start();
 
 	  }
 
 	@Override
 	public void render(GameContainer gc, Graphics g) {
-	  game.render(g);
+	  game.render(g, game.getCam());
 	}
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {	
-		 try {
-			  game = new Prog2CraftGame();
-			  }
-			  catch (SlickException e) {
-			  }  
-		 game.addPlayer();
+		 
 		 Field f1 = game.getMap().getField(0, 0);
 		 f1.setActor(new Actor(f1, ActorType.INFANTARIE));
 		 Field f2 = game.getMap().getField(1, 1);
 		 f2.setActor(new Actor(f2, ActorType.INFANTARIE));
 		 
 		 gc.getInput().addMouseListener(new MouseL(game, gc));
+		 keyL = new KeyboardL(game, gc);
 		 gc.setTargetFrameRate(60);
 		 gc.setMultiSample(4);
 		 gc.setVSync(true);
@@ -59,7 +54,7 @@ public class Prog2Craft2D extends BasicGame{
 
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
-		KeyboardL.input(gc, delta, game);
+		keyL.input(gc, delta, game);
 	}
 	  
 	

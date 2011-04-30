@@ -1,5 +1,6 @@
 package game;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -52,14 +53,14 @@ public class Field {
 		return type.name();
 	}
 	
-	public void render() {
-		float localX = x * FIELDSIZE * Camera.getZ() + Camera.getX();
-		float localY = y * FIELDSIZE * Camera.getZ() + Camera.getY();
+	public void render(Graphics g, Camera cam) {
+		float localX = x * FIELDSIZE * cam.getZ() + cam.getX();
+		float localY = y * FIELDSIZE * cam.getZ() + cam.getY();
 		img.draw(localX
 				,localY
-				,img.getWidth() * Camera.getZ()
-				,img.getHeight() * Camera.getZ() );
-		if (actor != null) actor.render(localX,localY);
+				,img.getWidth() * cam.getZ()
+				,img.getHeight() * cam.getZ() );
+		if (actor != null) actor.render(localX,localY,g,cam);
 	}
 
 	public void setActor(Actor actor) {

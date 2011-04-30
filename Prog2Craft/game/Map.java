@@ -1,6 +1,9 @@
 package game;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+
+import view.Camera;
 
 import factory.FieldFactory;
 
@@ -51,12 +54,12 @@ public class Map {
 		return this.spielfeld[x][y];
 	}
 	
-	public void render() {
+	public void render(Graphics g, Camera cam) {
 	    for (Field[] out : spielfeld)
 	  	  {
 	  	  for (Field in : out)
 	  	  	{
-	  		  in.render();
+	  		  in.render(g, cam);
 	  	  	}
 	  	  }
 	}

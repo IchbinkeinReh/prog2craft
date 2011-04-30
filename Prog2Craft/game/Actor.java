@@ -1,5 +1,6 @@
 package game;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -45,11 +46,11 @@ public class Actor {
 		return field;
 	}
 	
-	public void render(float localX, float localY) {
+	public void render(float localX, float localY, Graphics g, Camera cam) {
 		img.draw(localX 
 				,localY
-				,img.getWidth() * Camera.getZ()
-				,img.getHeight() * Camera.getZ() );
+				,img.getWidth() * cam.getZ()
+				,img.getHeight() * cam.getZ() );
 	}
 
 	public void setLeben(int leben) {

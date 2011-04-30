@@ -31,26 +31,26 @@ public class Player {
 		selectrahmen = new Rectangle(0, 0, 0, 0);
 	}
 	
-	public void render(Graphics g) {
+	public void render(Graphics g, Camera cam) {
 		for (Actor act : selected) {
-			float localX = act.getField().getX() * FIELDSIZE * Camera.getZ() + Camera.getX();
-			float localY = act.getField().getY() * FIELDSIZE * Camera.getZ() + Camera.getY();
+			float localX = act.getField().getX() * FIELDSIZE * cam.getZ() + cam.getX();
+			float localY = act.getField().getY() * FIELDSIZE * cam.getZ() + cam.getY();
 			int offset = (100-health.getWidth())/2;
-			health.draw(localX + (offset-1) * Camera.getZ(),localY + 2 * Camera.getZ()
-			,health.getWidth() * Camera.getZ()
-			,health.getHeight() * Camera.getZ() );
+			health.draw(localX + (offset-1) * cam.getZ(),localY + 2 * cam.getZ()
+			,health.getWidth() * cam.getZ()
+			,health.getHeight() * cam.getZ() );
 			int balkenbreite = (health.getWidth()-2);
 			float aktleben = act.getLeben();
 			int maxleben = act.getType().getLeben();
 			int pixel = (int)( ( aktleben / maxleben ) * balkenbreite );
-			gruen.draw(localX + offset * Camera.getZ()
-			,localY + 3 * Camera.getZ()
-			,pixel * Camera.getZ()
-			,gruen.getHeight() * Camera.getZ());
-			rot.draw(localX + (offset + pixel) * Camera.getZ()
-			,localY + 3 * Camera.getZ()
-			,(balkenbreite - pixel) * Camera.getZ()
-			,rot.getHeight() * Camera.getZ());
+			gruen.draw(localX + offset * cam.getZ()
+			,localY + 3 * cam.getZ()
+			,pixel * cam.getZ()
+			,gruen.getHeight() * cam.getZ());
+			rot.draw(localX + (offset + pixel) * cam.getZ()
+			,localY + 3 * cam.getZ()
+			,(balkenbreite - pixel) * cam.getZ()
+			,rot.getHeight() * cam.getZ());
 			
 		}
 	}

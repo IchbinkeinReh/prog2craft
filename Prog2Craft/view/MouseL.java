@@ -11,16 +11,19 @@ public class MouseL implements MouseListener {
 
 	private Prog2CraftGame game;
 	private Input input;
+	private int x,y;
+	private Camera cam;
 
-	private static Field getMouseField(Input input, Prog2CraftGame game) {
-		int x = (int)(  ((-Camera.getX() + input.getMouseX()) / Camera.getZ()) / 100 );
-		int y = (int)(  ((-Camera.getY() + input.getMouseY()) / Camera.getZ()) / 100 );
+	private Field getMouseField(Input input, Prog2CraftGame game) {
+		int x = (int)(  ((-cam.getX() + input.getMouseX()) / cam.getZ()) / 100 );
+		int y = (int)(  ((-cam.getY() + input.getMouseY()) / cam.getZ()) / 100 );
 		return game.getMap().getField(x, y);
 	}
 	
 	public MouseL(Prog2CraftGame game, GameContainer gc) {
 		this.game = game;
 		this.input = gc.getInput();
+		this.cam = game.getCam();
 	}
 
 	@Override
@@ -65,6 +68,8 @@ public class MouseL implements MouseListener {
 
 	@Override
 	public void mousePressed(int arg0, int arg1, int arg2) {
+		x = arg0;
+		y = arg1;
 		
 	}
 
@@ -75,8 +80,8 @@ public class MouseL implements MouseListener {
 
 	@Override
 	public void mouseWheelMoved(int arg0) {
-		if (arg0 > 0) 	 Camera.setZ( Camera.getZ() * 1.05f ) ; 
-		else 			 Camera.setZ( Camera.getZ() * 0.95f );
+		if (arg0 > 0) 	 cam.setZ( cam.getZ() * 1.05f ) ; 
+		else 			 cam.setZ( cam.getZ() * 0.95f );
 	}
 
 }
