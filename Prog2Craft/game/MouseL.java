@@ -18,6 +18,7 @@ public class MouseL implements MouseListener {
 		try { return game.getMap().getField(x, y); } catch (IllegalArgumentException e) { return null; }
 	}
 	
+	@SuppressWarnings("unused")
 	private void printMouseMapCoord() {
 		int x = (int)(  ((-cam.getX() + input.getMouseX()) / cam.getZ()) / 100 );
 		int y = (int)(  ((-cam.getY() + input.getMouseY()) / cam.getZ()) / 100 );
@@ -88,22 +89,33 @@ public class MouseL implements MouseListener {
 
 	@Override
 	public void mousePressed(int arg0, int arg1, int arg2) {
-		printMouseMapCoord();
-		game.getPlayer(0).deselectall();
-		
-		Field f = getMouseField(arg1, arg2);
-		if (f != null && f.getActor() != null)
-		game.getPlayer(0).select(f.getActor());
-		
-		mode.setModus(SELECTING);
-		mode.setX(arg1);
-		mode.setY(arg2);
+		switch (arg0) {
+			case 0:
+				game.getPlayer(0).deselectall();
+				Field f = getMouseField(arg1, arg2);
+				if (f != null && f.getActor() != null)
+				game.getPlayer(0).select(f.getActor());
+				mode.setModus(SELECTING);
+				mode.setX(arg1);
+				mode.setY(arg2);
+				break;
+			case 1:
+				//bewegung
+				break;
+		}
 	}
 
 	@Override
 	public void mouseReleased(int arg0, int arg1, int arg2) {
-		mode.setModus(NOTHING);
-		select(mode.getX(), mode.getY(), arg1, arg2);
+		switch (arg0) {
+			case 0:
+				mode.setModus(NOTHING);
+				select(mode.getX(), mode.getY(), arg1, arg2);
+				break;
+			case 1:
+				//bewegung
+				break;
+		}
 	}
 
 	@Override

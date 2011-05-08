@@ -12,6 +12,7 @@ public class Actor {
 	private Field field;
 	private Image img;
 	private int leben;
+	private int x, y; //TODO: prepare for bewegung!
 	
 	public Actor(Field field, ActorType type) throws SlickException{
 	this.field = field;
