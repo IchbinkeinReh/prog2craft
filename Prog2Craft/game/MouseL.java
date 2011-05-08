@@ -1,8 +1,5 @@
-package view;
+package game;
 
-import game.Field;
-import game.Mode;
-import game.Prog2CraftGame;
 import static enums.Modus.*;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
@@ -14,11 +11,28 @@ public class MouseL implements MouseListener {
 	private Input input;
 	private Camera cam;
 	private Mode mode;
-
-	private Field getMouseField(Input input, Prog2CraftGame game) {
-		int x = (int)(  ((-cam.getX() + input.getMouseX()) / cam.getZ()) / 100 );
-		int y = (int)(  ((-cam.getY() + input.getMouseY()) / cam.getZ()) / 100 );
+	
+	private Field getMouseField(int xxx, int yyy) {
+		int x = (int)(  ((-cam.getX() + xxx) / cam.getZ()) / 100 );
+		int y = (int)(  ((-cam.getY() + yyy) / cam.getZ()) / 100 );
 		return game.getMap().getField(x, y);
+	}
+	
+	private void select(int x1, int y1, int x2, int y2) {
+		int minX = Math.min(x1, x2);
+		int minY = Math.min(y1, y2);
+		int maxX = Math.max(x1, x2);
+		int maxY = Math.max(y1, y2);
+		
+		for (int x = minX; x < maxX; x += 100)
+		{
+			for(int y = minY; y < maxY; y += 100)
+			{
+			Actor act = getMouseField(x,y).getActor();
+			if (act != null)
+				game.getPlayer(0).select(act);
+			}
+		}
 	}
 	
 	public MouseL(Prog2CraftGame game, GameContainer gc, Mode mode) {
@@ -68,6 +82,7 @@ public class MouseL implements MouseListener {
 
 	@Override
 	public void mousePressed(int arg0, int arg1, int arg2) {
+		game.getPlayer(0).deselectall();
 		mode.setModus(SELECTING);
 		mode.setX(arg1);
 		mode.setY(arg2);
@@ -76,9 +91,8 @@ public class MouseL implements MouseListener {
 	@Override
 	public void mouseReleased(int arg0, int arg1, int arg2) {
 		mode.setModus(NOTHING);
-//		game.getPlayer(0).deselectall();
-//		if (getMouseField(input, game).getActor() != null)
-//		game.getPlayer(0).select(getMouseField(input, game).getActor());
+		
+		select(mode.getX(), mode.getY(), arg1, arg2);
 	}
 
 	@Override

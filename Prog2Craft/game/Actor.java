@@ -4,7 +4,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import view.Camera;
 import enums.ActorType;
 
 public class Actor {

@@ -1,4 +1,4 @@
-package view;
+package game;
 
 import static view.Prog2Craft2D.*;
 

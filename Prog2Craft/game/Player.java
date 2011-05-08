@@ -4,17 +4,16 @@ import static game.Field.FIELDSIZE;
 
 import java.util.HashSet;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.geom.Shape;
 
 import enums.Modus;
 
 
-import view.Camera;
 
 public class Player {
  
@@ -36,6 +35,7 @@ public class Player {
 	public void render(Graphics g, Camera cam, GameContainer gc) {
 		if (mode.getModus() == Modus.SELECTING) {
 			selectrahmen.setBounds(mode.getX(), mode.getY(), gc.getInput().getMouseX()-mode.getX(), gc.getInput().getMouseY()-mode.getY());
+			g.setColor(Color.green);
 			g.draw(selectrahmen);
 		}
 		else {

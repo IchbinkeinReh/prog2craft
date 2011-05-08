@@ -7,7 +7,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
-import view.Camera;
 
 public class Prog2CraftGame {
 

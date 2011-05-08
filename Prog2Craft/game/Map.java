@@ -3,7 +3,6 @@ package game;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
-import view.Camera;
 
 import factory.FieldFactory;
 

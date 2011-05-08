@@ -1,8 +1,5 @@
-package view;
+package game;
 
-import game.Actor;
-import game.Mode;
-import game.Prog2CraftGame;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;

@@ -9,7 +9,9 @@ import enums.Modus;
 import game.Actor;
 import game.Config;
 import game.Field;
+import game.KeyboardL;
 import game.Mode;
+import game.MouseL;
 import game.Prog2CraftGame;
 
 public class Prog2Craft2D extends BasicGame{

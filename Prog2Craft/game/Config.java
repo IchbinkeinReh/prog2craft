@@ -4,7 +4,7 @@ package game;
 public class Config {
 
 public int getBreite() {
-	return 1024;
+	return 800;
 }
 
 public int getHoehe() {
