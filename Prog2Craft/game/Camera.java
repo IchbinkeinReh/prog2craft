@@ -1,7 +1,5 @@
 package game;
 
-import static view.Prog2Craft2D.*;
-
 import org.newdawn.slick.GameContainer;
 
 public class Camera {

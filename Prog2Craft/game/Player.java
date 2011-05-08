@@ -63,7 +63,8 @@ public class Player {
 	}
 	
 	public void select(Actor actor) {
-		selected.add(actor);
+		if (actor != null)
+			selected.add(actor);
 	}
 	
 	public void unselect(Actor actor) {

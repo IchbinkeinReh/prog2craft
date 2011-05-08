@@ -15,7 +15,7 @@ public class MouseL implements MouseListener {
 	private Field getMouseField(int xxx, int yyy) {
 		int x = (int)(  ((-cam.getX() + xxx) / cam.getZ()) / 100 );
 		int y = (int)(  ((-cam.getY() + yyy) / cam.getZ()) / 100 );
-		return game.getMap().getField(x, y);
+		try { return game.getMap().getField(x, y); } catch (IllegalArgumentException e) { return null; }
 	}
 	
 	private void select(int x1, int y1, int x2, int y2) {
@@ -28,9 +28,9 @@ public class MouseL implements MouseListener {
 		{
 			for(int y = minY; y < maxY; y += 100)
 			{
-			Actor act = getMouseField(x,y).getActor();
-			if (act != null)
-				game.getPlayer(0).select(act);
+			Field f = getMouseField(x,y); 
+			if (f != null && f.getActor() != null)
+				 game.getPlayer(0).select(f.getActor()); 
 			}
 		}
 	}
@@ -67,7 +67,7 @@ public class MouseL implements MouseListener {
 
 	@Override
 	public void mouseClicked(int arg0, int arg1, int arg2, int arg3) {
-
+		
 	}
 
 	@Override
@@ -83,6 +83,7 @@ public class MouseL implements MouseListener {
 	@Override
 	public void mousePressed(int arg0, int arg1, int arg2) {
 		game.getPlayer(0).deselectall();
+		game.getPlayer(0).select(getMouseField(arg1, arg2).getActor());
 		mode.setModus(SELECTING);
 		mode.setX(arg1);
 		mode.setY(arg2);
@@ -91,7 +92,6 @@ public class MouseL implements MouseListener {
 	@Override
 	public void mouseReleased(int arg0, int arg1, int arg2) {
 		mode.setModus(NOTHING);
-		
 		select(mode.getX(), mode.getY(), arg1, arg2);
 	}
 
