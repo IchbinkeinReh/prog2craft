@@ -13,13 +13,28 @@ public class Actor {
 	private Image img;
 	private int leben;
 	private int x, y; //TODO: prepare for bewegung!
+	private Field target;
 	
 	public Actor(Field field, ActorType type) throws SlickException{
-	this.field = field;
-	this.type = type;
-	this.leben = type.getLeben();
-	field.setActor(this);
-	img = new Image(type.getStr());
+		this.field = field;
+		this.type = type;
+		this.leben = type.getLeben();
+		field.setActor(this);
+		img = new Image(type.getStr());
+	}
+	
+	public void logic() {
+		if (field != target)
+			move();
+	}
+	
+	public void move() {
+		int fX = field.getX();
+		int tX = target.getX();
+		int fY = field.getY();
+		int tY = target.getX();
+		
+		
 	}
 
 	public void setType(ActorType type) {
