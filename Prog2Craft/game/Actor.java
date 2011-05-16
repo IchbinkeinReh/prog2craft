@@ -13,7 +13,6 @@ public class Actor {
 	private Image img;
 	private int leben;
 	private int x, y; //TODO: prepare for bewegung!
-	private int nullvar = 0;// blubber
 	private Field target;
 	
 	public Actor(Field field, ActorType type) throws SlickException{
