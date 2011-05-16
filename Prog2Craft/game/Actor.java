@@ -20,7 +20,7 @@ public class Actor {
 		this.type = type;
 		this.leben = type.getLeben();
 		field.setActor(this);
-		img = new Image(type.getStr());
+		img = type.getImage();
 	}
 	
 	public void logic() {

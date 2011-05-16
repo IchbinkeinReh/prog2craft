@@ -5,6 +5,9 @@ import static enums.FieldType.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+
 public enum ActorType {
 	INFANTARIE("data/inf.png", 10, 5, 5, 5, 5, LEER, FELSIG, GEBIRGE),
 	PANZER("data/inf.png", 20, 10, 10, 10, 10, LEER),
@@ -51,8 +54,8 @@ public enum ActorType {
 			this.felder.add(felder[i]);
 	}
 
-	public String getStr() {
-		return str;
+	public Image getImage() throws SlickException {
+		return new Image(str); // TODO try catch ;)
 	}
 
 	public int getLeben() {
