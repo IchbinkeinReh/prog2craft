@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 
 public enum ActorType {
 	INFANTARIE("data/inf.png", 10, 5, 5, 5, 5, LEER, FELSIG, GEBIRGE),
@@ -54,8 +53,13 @@ public enum ActorType {
 			this.felder.add(felder[i]);
 	}
 
-	public Image getImage() throws SlickException {
-		return new Image(str); // TODO try catch ;)
+	public Image getImage() {
+			try{
+				return new Image(str);
+			}catch(Exception e){
+				System.exit(1);
+				return null;
+			} /* TODO return dummy image instead of terminating the application */
 	}
 
 	public int getLeben() {
