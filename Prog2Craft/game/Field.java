@@ -5,6 +5,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 
+//import enums.Field;
+// Woher kommt das?
 import enums.FieldType;
 
 
@@ -69,5 +71,10 @@ public class Field {
 	public Actor getActor() {
 		return actor;
 	}
+
 	
+	public boolean Equals(Field target){
+		return (this.x == target.getX() && this.y == target.getY());
+		// Feldergleichheit bei gleichen Koordinaten
+	}
 }

@@ -24,7 +24,9 @@ public class Actor {
 	}
 	
 	public void logic() {
-		if (field != target)
+		/* Vergleich hinkt, natürlich sind die typen-gleich.. */
+		// if (field != target)
+		if (!field.Equals(target))
 			move();
 	}
 	
