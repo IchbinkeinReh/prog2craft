@@ -12,6 +12,8 @@ public class Actor {
 	private Field field;
 	private Image img;
 	private int leben;
+
+	@SuppressWarnings("unused")
 	private int x, y; //TODO: prepare for bewegung!
 	private Field target;
 	
@@ -24,19 +26,18 @@ public class Actor {
 	}
 	
 	public void logic() {
-		/* Vergleich hinkt, natürlich sind die typen-gleich.. */
-		// if (field != target)
+		// if (field != target) <--> Equals => prüft auf X Y Gleichheit
 		if (!field.Equals(target))
 			move();
 	}
-	
+
+	@SuppressWarnings("unused")
 	public void move() {
 		int fX = field.getX();
 		int tX = target.getX();
 		int fY = field.getY();
 		int tY = target.getX();
-		
-		
+	
 	}
 
 	public void setType(ActorType type) {
@@ -76,8 +77,5 @@ public class Actor {
 
 	public int getLeben() {
 		return leben;
-	}
-	
-	
-	
+	}	
 }
