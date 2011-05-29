@@ -15,7 +15,7 @@ public class Actor {
 
 	@SuppressWarnings("unused")
 	private int x, y; //TODO: prepare for bewegung!
-	private Field target;
+	private Field target; // unnötig? Angriffsziel?
 	
 	public Actor(Field field, ActorType type) throws SlickException{
 		this.field = field;
@@ -33,6 +33,7 @@ public class Actor {
 
 	@SuppressWarnings("unused")
 	public void move() {
+		//TODO warum eigenes move, wenn setField?
 		int fX = field.getX();
 		int tX = target.getX();
 		int fY = field.getY();
@@ -72,7 +73,11 @@ public class Actor {
 	}
 
 	public void setLeben(int leben) {
-		this.leben = leben;
+		// nicht negatives / mehr als max Leben
+		// sonst Anzeige- und Logikfehler!!
+		if(leben>=0 && leben<=type.getLeben()){
+			this.leben = leben;
+		}
 	}
 
 	public int getLeben() {
