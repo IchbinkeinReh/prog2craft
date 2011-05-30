@@ -8,25 +8,27 @@ import enums.ActorType;
 
 public class Actor {
 
+	private Player owner;
 	private ActorType type;
 	private Field field;
 	private Image img;
 	private int leben;
+	private boolean alive = true;
 
 	@SuppressWarnings("unused")
 	private int x, y; //TODO: prepare for bewegung!
-	private Field target; // unnötig? Angriffsziel?
+	private Field target;
 	
-	public Actor(Field field, ActorType type) throws SlickException{
+	public Actor(Field field, Player owner, ActorType type) throws SlickException{
 		this.field = field;
 		this.type = type;
 		this.leben = type.getLeben();
+		this.owner = owner;
 		field.setActor(this);
 		img = type.getImage();
 	}
 	
 	public void logic() {
-		// if (field != target) <--> Equals => prüft auf X Y Gleichheit
 		if (!field.Equals(target))
 			move();
 	}
@@ -75,9 +77,21 @@ public class Actor {
 	public void setLeben(int leben) {
 		// nicht negatives / mehr als max Leben
 		// sonst Anzeige- und Logikfehler!!
+		
 		if(leben>=0 && leben<=type.getLeben()){
 			this.leben = leben;
 		}
+		if(leben==0){
+			owner.removeKilledActorFromSelection(this);
+			alive = false;
+			field.resetActor(this);
+		}else{
+			alive = true;
+		}
+	}
+	
+	public boolean isAlive(){
+		return alive;
 	}
 
 	public int getLeben() {

@@ -72,6 +72,11 @@ public class Field {
 		return actor;
 	}
 
+	public void resetActor(Actor actor){
+		if(!actor.isAlive()){
+			this.actor = null;
+		}
+	}
 	
 	public boolean Equals(Field target){
 		return (this.x == target.getX() && this.y == target.getY());

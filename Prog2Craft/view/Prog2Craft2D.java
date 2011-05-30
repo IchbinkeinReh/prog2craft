@@ -12,6 +12,7 @@ import game.Field;
 import game.KeyboardL;
 import game.Mode;
 import game.MouseL;
+import game.Player;
 import game.Prog2CraftGame;
 
 public class Prog2Craft2D extends BasicGame{
@@ -43,10 +44,11 @@ public class Prog2Craft2D extends BasicGame{
 	@Override
 	public void init(GameContainer gc) throws SlickException {	
 		 game = new Prog2CraftGame(gc, mode);
+		 Player owner = game.getPlayer(0);
 		 Field f1 = game.getMap().getField(6, 7);
-		 f1.setActor(new Actor(f1, ActorType.INFANTARIE));
+		 f1.setActor(new Actor(f1, owner, ActorType.INFANTARIE));
 		 Field f2 = game.getMap().getField(7, 7);
-		 f2.setActor(new Actor(f2, ActorType.INFANTARIE));
+		 f2.setActor(new Actor(f2, owner, ActorType.INFANTARIE));
 		 
 		 gc.getInput().addMouseListener(new MouseL(game, gc, mode));
 		 keyL = new KeyboardL(game, gc, mode);
