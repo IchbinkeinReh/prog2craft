@@ -5,7 +5,6 @@ import static game.Field.FIELDSIZE;
 import java.util.HashSet;
 
 import org.newdawn.slick.Color;
-import org.newdawn.slick.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -34,7 +33,6 @@ public class Player {
 	private Image rot;
 	private Rectangle selectrahmen;
 	private Mode mode;
-	private Game game;
 
 	public Player(Mode mode) throws SlickException {
 		health = new Image("data/health.png");
@@ -42,7 +40,6 @@ public class Player {
 		rot = new Image("data/rot.png");
 		selectrahmen = new Rectangle(0, 0, 0, 0);
 		this.mode = mode;
-		this.game = game;
 	}
 	
 	public void render(Graphics g, Camera cam, GameContainer gc) {
