@@ -8,39 +8,33 @@ import enums.ActorType;
 
 public class Actor {
 
-	private Player owner;
 	private ActorType type;
 	private Field field;
 	private Image img;
 	private int leben;
 	private boolean alive = true;
+	private Player owner;
 
 	@SuppressWarnings("unused")
 	private int x, y; //TODO: prepare for bewegung!
 	private Field target;
 	
+	public Field getTarget() {
+		return target;
+	}
+
+	public void setTarget(Field target) {
+		this.target = target;
+	}
+
 	public Actor(Field field, Player owner, ActorType type) throws SlickException{
 		this.field = field;
 		this.type = type;
 		this.leben = type.getLeben();
+		owner.addEinheit(this);
 		this.owner = owner;
 		field.setActor(this);
 		img = type.getImage();
-	}
-	
-	public void logic() {
-		if (!field.Equals(target))
-			move();
-	}
-
-	@SuppressWarnings("unused")
-	public void move() {
-		//TODO warum eigenes move, wenn setField?
-		int fX = field.getX();
-		int tX = target.getX();
-		int fY = field.getY();
-		int tY = target.getX();
-	
 	}
 
 	public void setType(ActorType type) {
@@ -85,8 +79,6 @@ public class Actor {
 			owner.removeKilledActorFromSelection(this);
 			alive = false;
 			field.resetActor(this);
-		}else{
-			alive = true;
 		}
 	}
 	
@@ -97,4 +89,24 @@ public class Actor {
 	public int getLeben() {
 		return leben;
 	}	
+	
+	public void logic(Prog2CraftGame game) {
+		if (!field.Equals(target))
+			move(game);
+	}
+
+	public void move(Prog2CraftGame game) {
+		int xDir = 0;
+		if (field.getX() < target.getX()) 		xDir = +1;
+		else if (field.getX() > target.getX()) 	xDir = -1;
+		int yDir = 0;
+		if (field.getY() < target.getY()) 		xDir = +1;
+		else if (field.getY() > target.getY()) 	xDir = -1;
+		
+		Field next = game.getMap().getField(field.getX()+xDir, field.getY()+yDir);
+		this.setField(next);
+		next.setActor(this);
+		
+	}
+	
 }

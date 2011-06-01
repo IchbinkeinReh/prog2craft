@@ -19,21 +19,31 @@ public class Player {
 	
 	private int lostActors = 0;
 	private HashSet<Actor> selected = new HashSet<Actor>();
-	public HashSet<Actor> getSelected() {
-		return selected;
-	}
+	private HashSet<Actor> einheiten = new HashSet<Actor>();
 	
-	public void removeKilledActorFromSelection(Actor a){
-		this.unselect(a);
-		lostActors++;
-	}
-
 	private Image health;
 	private Image gruen;
 	private Image rot;
 	private Rectangle selectrahmen;
 	private Mode mode;
 
+	public HashSet<Actor> getSelected() {
+		return selected;
+	}
+	
+	public void addEinheit(Actor actor) {
+		einheiten.add(actor);
+	}
+	
+	public void removeEinheit(Actor actor) {
+		einheiten.remove(actor);
+	}
+	
+	public void removeKilledActorFromSelection(Actor a){
+		this.unselect(a);
+		lostActors++;
+	}
+	
 	public Player(Mode mode) throws SlickException {
 		health = new Image("data/health.png");
 		gruen = new Image("data/gruen.png");
@@ -92,4 +102,5 @@ public class Player {
 	public Mode getMode() {
 		return mode;
 	}
+	
 }
