@@ -90,10 +90,10 @@ public class MouseL implements MouseListener {
 
 	@Override
 	public void mousePressed(int arg0, int arg1, int arg2) {
+		Field f = getMouseField(arg1, arg2);
 		switch (arg0) {
 			case 0:
 				game.getPlayer(0).deselectall();
-				Field f = getMouseField(arg1, arg2);
 				if (f != null && f.getActor() != null)
 				game.getPlayer(0).select(f.getActor());
 				mode.setModus(SELECTING);
@@ -101,7 +101,10 @@ public class MouseL implements MouseListener {
 				mode.setY(arg2);
 				break;
 			case 1:
-				//bewegung
+				for (Actor actor : game.getPlayer(0).getSelected())
+				{
+					actor.setTarget(f);
+				}
 				break;
 		}
 	}

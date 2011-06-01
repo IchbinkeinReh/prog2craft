@@ -76,5 +76,10 @@ public class Prog2CraftGame {
 		map.render(g,cam);
 		spieler.get(0).render(g,cam,gc);
 	}
+	
+	public void logic(Prog2CraftGame game)
+	{
+		spieler.get(0).logic(game);
+	}
 
 }

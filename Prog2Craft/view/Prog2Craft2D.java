@@ -26,6 +26,9 @@ public class Prog2Craft2D extends BasicGame{
 	  private KeyboardL keyL; 
 	  private Mode mode = new Mode(Modus.NOTHING);
 	  
+	  private int moveTime = 333;
+	  private int actTime;
+	  
 	  
 	  public static void main (String[] args) throws SlickException{
 		Config conf = new Config(); 
@@ -61,7 +64,12 @@ public class Prog2Craft2D extends BasicGame{
 
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
+		actTime += delta;
 		keyL.input(gc, delta, game);
+		if (actTime > moveTime) {
+			game.logic(game);
+			actTime = 0;
+		}
 	}
 	  
 	

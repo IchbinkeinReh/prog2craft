@@ -52,6 +52,13 @@ public class Player {
 		this.mode = mode;
 	}
 	
+	public void logic(Prog2CraftGame game) {
+		for (Actor einheit : einheiten)
+		{
+			einheit.logic(game);
+		}
+	}
+	
 	public void render(Graphics g, Camera cam, GameContainer gc) {
 		if (mode.getModus() == Modus.SELECTING) {
 			selectrahmen.setBounds(mode.getX(), mode.getY(), gc.getInput().getMouseX()-mode.getX(), gc.getInput().getMouseY()-mode.getY());

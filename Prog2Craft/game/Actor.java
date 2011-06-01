@@ -29,6 +29,7 @@ public class Actor {
 
 	public Actor(Field field, Player owner, ActorType type) throws SlickException{
 		this.field = field;
+		this.target = field;
 		this.type = type;
 		this.leben = type.getLeben();
 		owner.addEinheit(this);
@@ -100,12 +101,16 @@ public class Actor {
 		if (field.getX() < target.getX()) 		xDir = +1;
 		else if (field.getX() > target.getX()) 	xDir = -1;
 		int yDir = 0;
-		if (field.getY() < target.getY()) 		xDir = +1;
-		else if (field.getY() > target.getY()) 	xDir = -1;
+		if (field.getY() < target.getY()) 		yDir = +1;
+		else if (field.getY() > target.getY()) 	yDir = -1;
 		
 		Field next = game.getMap().getField(field.getX()+xDir, field.getY()+yDir);
-		this.setField(next);
-		next.setActor(this);
+		Field old = field;
+		
+		if (this.setField(next)) {
+			old.setActor(null);
+			next.setActor(this);
+		}
 		
 	}
 	
