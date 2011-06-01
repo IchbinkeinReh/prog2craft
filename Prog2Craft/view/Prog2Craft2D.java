@@ -48,14 +48,16 @@ public class Prog2Craft2D extends BasicGame{
 	public void init(GameContainer gc) throws SlickException {	
 		 game = new Prog2CraftGame(gc, mode);
 		 Player owner = game.getPlayer(0);
-		 Field f1 = game.getMap().getField(6, 7);
-		 f1.setActor(new Actor(f1, owner, ActorType.INFANTARIE));
-		 Field f2 = game.getMap().getField(7, 7);
-		 f2.setActor(new Actor(f2, owner, ActorType.INFANTARIE));
+		 Field f1 = game.getMap().getField(5, 8);
+		 f1.setActor(new Actor(f1, owner, ActorType.PANZER));
+		 Field f2 = game.getMap().getField(5, 9);
+		 f2.setActor(new Actor(f2, owner, ActorType.LAUFPANZER));
+		 Field f3 = game.getMap().getField(5, 10);
+		 f3.setActor(new Actor(f3, owner, ActorType.INFANTARIE));
 		 
 		 gc.getInput().addMouseListener(new MouseL(game, gc, mode));
 		 keyL = new KeyboardL(game, gc, mode);
-		 gc.setTargetFrameRate(60);
+		 gc.setTargetFrameRate(120);
 		 gc.setMultiSample(4);
 		 gc.setVSync(true);
 		 gc.getGraphics().setAntiAlias(true);
