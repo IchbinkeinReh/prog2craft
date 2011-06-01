@@ -1,0 +1,25 @@
+Wed Jun 01 11:30:11 CEST 2011 INFO:Slick Build #274
+Wed Jun 01 11:30:11 CEST 2011 INFO:LWJGL Version: 2.7.1
+Wed Jun 01 11:30:11 CEST 2011 INFO:OriginalDisplayMode: 1280 x 800 x 24 @60Hz
+Wed Jun 01 11:30:11 CEST 2011 INFO:TargetDisplayMode: 800 x 600 x 0 @0Hz
+Wed Jun 01 11:30:11 CEST 2011 INFO:Starting display 800x600
+Wed Jun 01 11:30:11 CEST 2011 INFO:Use Java PNG Loader = true
+Wed Jun 01 11:30:11 CEST 2011 INFO:Controllers not available
+Wed Jun 01 11:31:35 CEST 2011 ERROR:null
+java.util.ConcurrentModificationException
+	at java.util.HashMap$HashIterator.nextEntry(HashMap.java:810)
+	at java.util.HashMap$KeyIterator.next(HashMap.java:845)
+	at game.KeyboardL.input(KeyboardL.java:63)
+	at view.Prog2Craft2D.update(Prog2Craft2D.java:64)
+	at org.newdawn.slick.GameContainer.updateAndRender(GameContainer.java:657)
+	at org.newdawn.slick.AppGameContainer.gameLoop(AppGameContainer.java:408)
+	at org.newdawn.slick.AppGameContainer.start(AppGameContainer.java:318)
+	at view.Prog2Craft2D.main(Prog2Craft2D.java:36)
+Wed Jun 01 11:31:35 CEST 2011 ERROR:Game.update() failure - check the game code.
+org.newdawn.slick.SlickException: Game.update() failure - check the game code.
+	at org.newdawn.slick.GameContainer.updateAndRender(GameContainer.java:663)
+	at org.newdawn.slick.AppGameContainer.gameLoop(AppGameContainer.java:408)
+	at org.newdawn.slick.AppGameContainer.start(AppGameContainer.java:318)
+	at view.Prog2Craft2D.main(Prog2Craft2D.java:36)
+	
+Mehrfach Leben zweier Einheiten senken / erhöhen bei eingeschaltetem Zoom löst Fehler aus!
