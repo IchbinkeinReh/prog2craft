@@ -1,6 +1,0 @@
-CDWriter := getW?.putW?.CDWriter;
-CDReader := getR?.putR?.CDReader;
-User1 := getR!.getW!.rip!.burn!.putW!.putR!.User1;
-User2 := getW!.getR!.rip!.burn!.putR!.putW!.User2;
-
-(CDReader | CDWriter | User1 | User2 ) \ {getR, putR, getW, putW}
