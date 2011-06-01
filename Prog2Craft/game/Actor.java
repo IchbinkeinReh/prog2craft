@@ -5,6 +5,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import enums.ActorType;
+import enums.FieldType;
 
 public class Actor {
 
@@ -24,7 +25,10 @@ public class Actor {
 	}
 
 	public void setTarget(Field target) {
-		this.target = target;
+		//TODO Welche Einheit kann über welche Felder?
+		if(target.getType() != FieldType.MEER && type != ActorType.FLUGZEUG){
+			this.target = target;
+		}
 	}
 
 	public Actor(Field field, Player owner, ActorType type) throws SlickException{
