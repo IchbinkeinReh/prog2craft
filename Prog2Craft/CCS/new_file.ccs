@@ -1,0 +1,10 @@
+
+Sender := put!x:5..5.send!x.Sending[x];
+Sending[x] := receiveAck?.Sender;
+Receiver := receive?x:5..5.get!x.sendAck!.Receiver;
+Medium := send?x:5..5.receive!x.Medium;
+AckMedium := sendAck?.receiveAck!.AckMedium;
+DupMedium := Medium | AckMedium;
+//DupMedium1 := send?.receive!.DupMedium1 + sendAck?.receiveAck!.DupMedium1;
+
+put?5.(Sender | Receiver | DupMedium ) \ {send, receive, sendAck, receiveAck}

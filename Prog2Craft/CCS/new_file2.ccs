@@ -1,0 +1,3 @@
+Buffer[put,get] := put?.Buffer[get,put];
+
+Buffer[put,get]
