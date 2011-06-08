@@ -16,6 +16,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>data/chucknorris.png</name>
+			<type>1</type>
+			<location>/home/saar/workspace/Prog2Craft/data/chucknorris.png</location>
+		</link>
+		<link>
 			<name>data/panzer.png</name>
 			<type>1</type>
 			<location>/home/saar/workspace/Prog2Craft/data/panzer.png</location>

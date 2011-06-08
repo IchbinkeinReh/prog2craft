@@ -59,7 +59,7 @@ public class Prog2Craft2D extends BasicGame{
 		 Field f4 = game.getMap().getField(6, 8);
 		 f4.setActor(new Actor(f4, owner, ActorType.LAUFPANZER));
 		 Field f5 = game.getMap().getField(6, 9);
-		 f5.setActor(new Actor(f5, owner, ActorType.LAUFPANZER));
+		 f5.setActor(new Actor(f5, owner, ActorType.CHUCKNORRIS));
 		 Field f6 = game.getMap().getField(6, 10);
 		 f6.setActor(new Actor(f6, owner, ActorType.LAUFPANZER));
 		 
