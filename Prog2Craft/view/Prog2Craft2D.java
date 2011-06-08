@@ -51,9 +51,25 @@ public class Prog2Craft2D extends BasicGame{
 		 Field f1 = game.getMap().getField(5, 8);
 		 f1.setActor(new Actor(f1, owner, ActorType.PANZER));
 		 Field f2 = game.getMap().getField(5, 9);
-		 f2.setActor(new Actor(f2, owner, ActorType.LAUFPANZER));
+		 f2.setActor(new Actor(f2, owner, ActorType.PANZER));
 		 Field f3 = game.getMap().getField(5, 10);
-		 f3.setActor(new Actor(f3, owner, ActorType.INFANTARIE));
+		 f3.setActor(new Actor(f3, owner, ActorType.PANZER));
+		 
+
+		 Field f4 = game.getMap().getField(6, 8);
+		 f4.setActor(new Actor(f4, owner, ActorType.LAUFPANZER));
+		 Field f5 = game.getMap().getField(6, 9);
+		 f5.setActor(new Actor(f5, owner, ActorType.LAUFPANZER));
+		 Field f6 = game.getMap().getField(6, 10);
+		 f6.setActor(new Actor(f6, owner, ActorType.LAUFPANZER));
+		 
+
+		 Field f7 = game.getMap().getField(7, 8);
+		 f7.setActor(new Actor(f7, owner, ActorType.INFANTARIE));
+		 Field f8 = game.getMap().getField(7, 9);
+		 f8.setActor(new Actor(f8, owner, ActorType.INFANTARIE));
+		 Field f9 = game.getMap().getField(7, 10);
+		 f9.setActor(new Actor(f9, owner, ActorType.INFANTARIE));
 		 
 		 gc.getInput().addMouseListener(new MouseL(game, gc, mode));
 		 keyL = new KeyboardL(game, gc, mode);

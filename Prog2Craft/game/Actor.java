@@ -112,6 +112,8 @@ public class Actor {
 		Field next = game.getMap().getField(field.getX()+xDir, field.getY()+yDir);
 		Field old = field;
 		
+		//if(!game.getMap().canMove(field)){return;}
+		
 		if(next.Equals(target) && target.getActor()!=null){ target=old; return; }
 		
 		if (this.setField(next)) {

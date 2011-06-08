@@ -59,6 +59,10 @@ public class Map {
 		return this.spielfeld[x][y];
 	}
 	
+	private Boolean existsField(int x, int y){
+		return !( (x < 0) || (x > spielfeld.length-1) || (y < 0) || (y > spielfeld[0].length-1)) ;
+	}
+	
 	public void render(Graphics g, Camera cam) {
 	    for (Field[] out : spielfeld)
 	  	  {
@@ -68,5 +72,42 @@ public class Map {
 	  	  	}
 	  	  }
 	}
-	
+
+	public Boolean canMove(Field source) {
+		Boolean[] fia = new Boolean[8];
+
+		if(existsField(source.getX()-1, source.getY()-1)){
+			fia[0] = null==this.getField(source.getX()-1, source.getY()-1).getActor();
+		}
+		if(existsField(source.getX()-1, source.getY())){
+			fia[1] = null==this.getField(source.getX()-1, source.getY()).getActor();
+		}
+		if(existsField(source.getX()-1, source.getY()+1)){
+			fia[2] = null==this.getField(source.getX()-1, source.getY()+1).getActor();
+		}
+		
+		if(existsField(source.getX(), source.getY()-1)){
+			fia[3] = null==this.getField(source.getX(), source.getY()-1).getActor();
+		}
+		if(existsField(source.getX(), source.getY()+1)){
+			fia[4] = null==this.getField(source.getX(), source.getY()+1).getActor();
+		}
+		
+		if(existsField(source.getX()+1, source.getY()-1)){
+			fia[5] = null==this.getField(source.getX()+1, source.getY()-1).getActor();
+		}
+		if(existsField(source.getX()+1, source.getY())){
+			fia[6] = null==this.getField(source.getX()+1, source.getY()).getActor();
+		}
+		if(existsField(source.getX()+1, source.getY()+1)){
+			fia[7] = null==this.getField(source.getX()+1, source.getY()+1).getActor();
+		}
+		
+		Boolean cmove = false;
+		for(Boolean anyFree : fia){
+			if(anyFree){ cmove = true; }
+		}
+		
+		return cmove;
+	}
 }

@@ -82,4 +82,5 @@ public class Field {
 		return (this.x == target.getX() && this.y == target.getY());
 		// Feldergleichheit bei gleichen Koordinaten
 	}
+	
 }
