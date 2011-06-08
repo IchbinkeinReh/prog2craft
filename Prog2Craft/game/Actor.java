@@ -7,7 +7,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import enums.ActorType;
-import enums.FieldType;
 
 public class Actor {
 
