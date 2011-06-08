@@ -8,10 +8,13 @@ import java.util.List;
 import org.newdawn.slick.Image;
 
 public enum ActorType {
+	ZIVILIST("data/inf.png", 1, 0, 0, 0, 0, LEER, FELSIG, GEBIRGE),
+	HEALER("data/inf.png", 10, 2, 10, -15, 15, LEER, FELSIG),
 	INFANTARIE("data/inf.png", 10, 5, 5, 5, 5, LEER, FELSIG, GEBIRGE),
 	PANZER("data/inf.png", 20, 10, 10, 10, 10, LEER),
-	LAUFPANZER("data/inf.png", 30, 15, 15, 15, 15, LEER),
-	FLUGZEUG("data/inf.png", 50, 25, 25, 25, 25, LEER, FELSIG, GEBIRGE, MEER);
+	LAUFPANZER("data/inf.png", 30, 15, 15, 15, 15, LEER, FELSIG),
+	FLUGZEUG("data/inf.png", 50, 25, 25, 25, 25, LEER, FELSIG, GEBIRGE, MEER),
+	CHUCKNORRIS("data/inf.png", 1000, 1000, 1000, 1000, 1000, LEER, FELSIG, GEBIRGE, MEER);
 	
 	private final int punkte;
 	private final int reichweite;
