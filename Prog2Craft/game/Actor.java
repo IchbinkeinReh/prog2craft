@@ -14,9 +14,14 @@ public class Actor {
 	private Field field;
 	private Image img;
 	private int leben;
+	private int ruestung;
+	private int angriff;
 	private boolean alive = true;
 	private Player owner;
-
+	private boolean randomMove = false;
+	private boolean keepAttacking = false;
+	private Actor attackTarget = null;
+	
 	@SuppressWarnings("unused")
 	private int x, y; //TODO: prepare for bewegung!
 	private Field target;
@@ -28,8 +33,82 @@ public class Actor {
 	public void setTarget(Field target) {
 		//TODO Welche Einheit kann über welche Felder?
 		if(this.getType().canWalkOn(target.getType())){
-			this.target = target;
+			if(target.getActor()==null){
+				this.target = target;
+			}
 		}
+		if(keepAttacking){
+			Attack(attackTarget.getField());
+		}else if(target.getActor()!=null && target.getActor().getTeam() == this.getTeam()){
+			// Attack-Funktion
+			Attack(target);
+		}
+	}
+	
+	public int getAngriff(){
+		return this.angriff;
+	}
+	
+	public void setAngriff(int newAngriff){
+		this.angriff = newAngriff;
+	}
+	
+	public boolean setAttackTarget(Actor target){
+		if(this.attackTarget==null){
+			this.attackTarget = target;
+			this.keepAttacking = true;
+		}
+		return (this.attackTarget == target);
+	}
+	
+	public int getRuestung(){
+		return ruestung;
+	}
+	
+	public int setRuestung(int neueRuestung){
+		if(this.ruestung>=0){
+			this.ruestung = neueRuestung;
+		}
+		return ruestung;
+	}
+	
+	private boolean Attack(Field target) {
+		int distance = this.getField().getDistance(target);
+		attackTarget = target.getActor();
+		keepAttacking = true;
+		
+		if(distance <= this.type.getReichweite()){
+			int ruestung = attackTarget.getRuestung();
+			int leben    = attackTarget.getLeben();
+			int mydmg    = this.getAngriff();
+			
+			int neueRuestung = Math.round(ruestung-mydmg);
+			int newDmg   = (ruestung/10-mydmg); // > 0 => Rüstung hat vollen Dmg abgefangen
+			int neuesLeben = leben;
+			
+			if(newDmg<0){
+				neuesLeben += Math.round(newDmg);
+			}
+			
+			System.out.println(mydmg + " ; " + leben + " => " + neuesLeben + " ; " + ruestung + " => " + neueRuestung);
+			
+			attackTarget.setRuestung(neueRuestung);
+			attackTarget.setLeben(neuesLeben);
+			
+			if(attackTarget.getType().getReichweite() <= distance){
+				// mache Schritt von Einheit weg
+			}
+			System.out.println("Attack!!!");
+		}else{
+			// mache Schritt auf Einheit zu
+		}
+		
+		/* Actor gekillt? */
+		if(target.getActor()==null){
+			System.out.println("Target killed!");
+			keepAttacking = false;
+		}
+		return true;
 	}
 
 	public Actor(Field field, Player owner, ActorType type) throws SlickException{
@@ -37,6 +116,8 @@ public class Actor {
 		this.target = field;
 		this.type = type;
 		this.leben = type.getLeben();
+		this.angriff = type.getAngriff();
+		this.ruestung = type.getVerteidigung();
 		owner.addEinheit(this);
 		this.owner = owner;
 		field.setActor(this);
@@ -116,44 +197,21 @@ public class Actor {
 		
 		if(next.Equals(target) && target.getActor()!=null){ target=old; return; }
 		
-		if (this.setField(next)) {
+		if (this.setField(next) && !randomMove) {
 			old.setActor(null);
 			next.setActor(this);
 		}else{
+			
+			randomMove = (randomMove ? false : true);
+			
 			next = randomMove(game, next, old);
 			if(next.Equals(target) && target.getActor()!=null){ target=old; return; }
+			
 			if (this.setField(next)) {
 				old.setActor(null);
 				next.setActor(this);
 			}
-			/*
-			boolean moved = false;
-			while(!moved){
-				int newX = 0;
-				int newY = 0;
 
-				int diffX = target.getX() - field.getX();
-				int diffY = target.getY() - field.getY();
-				
-				if(Math.abs(xDir)+diffX > Math.abs(yDir)+diffY){
-					newX = next.getX() + xDir;
-					newY = next.getY() + diffY;
-				}else{
-					newX = next.getX() + diffX;
-					newY = next.getY() + yDir;
-				}
-				newX = newX % 2;
-				newY = newY % 2;
-				next = game.getMap().getField(field.getX()+newX, field.getY()+newY);
-				
-				if(this.setField(next)){
-					moved = true;
-					old.setActor(null);
-					next.setActor(this);
-				}
-				
-			}
-			*/
 		}
 		
 	}
@@ -164,5 +222,9 @@ public class Actor {
 		int newX = old.getX() + change.nextInt(3) - 1;
 		int newY = old.getY() + change.nextInt(3) - 1;
 		return game.getMap().getField(newX, newY);
+	}
+	
+	public Player getTeam() {
+		return owner;
 	}
 }

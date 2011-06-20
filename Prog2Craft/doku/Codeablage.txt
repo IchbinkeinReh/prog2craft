@@ -48,3 +48,39 @@
 	private Boolean existsField(int x, int y){
 		return !( (x < 0) || (x > spielfeld.length-1) || (y < 0) || (y > spielfeld[0].length-1)) ;
 	}
+	
+	
+	
+	
+	
+	
+	Move
+	
+				/*
+			boolean moved = false;
+			while(!moved){
+				int newX = 0;
+				int newY = 0;
+
+				int diffX = target.getX() - field.getX();
+				int diffY = target.getY() - field.getY();
+				
+				if(Math.abs(xDir)+diffX > Math.abs(yDir)+diffY){
+					newX = next.getX() + xDir;
+					newY = next.getY() + diffY;
+				}else{
+					newX = next.getX() + diffX;
+					newY = next.getY() + yDir;
+				}
+				newX = newX % 2;
+				newY = newY % 2;
+				next = game.getMap().getField(field.getX()+newX, field.getY()+newY);
+				
+				if(this.setField(next)){
+					moved = true;
+					old.setActor(null);
+					next.setActor(this);
+				}
+				
+			}
+			*/

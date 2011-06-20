@@ -26,6 +26,17 @@ public class Field {
 		this.img = new Image(type.getPath());
 	}
 
+	public int getDistance(Field target) {
+		int localX = target.getX();
+		int localY = target.getY();
+		if((x - localX) < (y - localY)){
+			return (x - localX);
+		}else{
+			return (y - localY);
+		}
+		//return Math.abs( (x + y) - (localX + localY) );
+	}
+	
 	public void setX(int x) {
 		this.x = x;
 	}
