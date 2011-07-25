@@ -11,10 +11,10 @@ public enum ActorType {
 	ZIVILIST("data/inf.png", 1, 0, 0, 0, 0, LEER, FELSIG, GEBIRGE),
 	HEALER("data/inf.png", 10, 2, 10, -15, 15, LEER, FELSIG),
 	INFANTARIE("data/inf.png", 10, 5, 5, 5, 5, LEER, FELSIG, GEBIRGE),
-	PANZER("data/panzer.png", 20, 10, 10, 10, 10, LEER),
+	PANZER("data/inf.png", 20, 10, 10, 10, 10, LEER),
 	LAUFPANZER("data/inf.png", 30, 15, 15, 15, 15, LEER, FELSIG),
 	FLUGZEUG("data/inf.png", 50, 25, 25, 25, 25, LEER, FELSIG, GEBIRGE, MEER),
-	CHUCKNORRIS("data/chucknorris.png", 1000, 1000, 1000, 1000, 1000, LEER, FELSIG, GEBIRGE, MEER);
+	CHUCKNORRIS("data/inf.png", 1000, 1000, 1000, 1000, 1000, LEER, FELSIG, GEBIRGE, MEER);
 	
 	private final int punkte;
 	private final int reichweite;
