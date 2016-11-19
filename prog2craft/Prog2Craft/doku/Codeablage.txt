@@ -1,0 +1,86 @@
+               
+               Für schrift:
+               
+                  String pressEnterToStart = "[PRESS ENTER TO START]";
+
+                  SCORE_TRUE_TYPE_FONT.drawString(WIDTH / 2 - SCORE_TRUE_TYPE_FONT.getWidth(pressEnterToStart) / 2, HEIGHT/2 -SCORE_TRUE_TYPE_FONT.getHeight(pressEnterToStart)/2 ,pressEnterToStart);
+                  
+                  Map:
+                  
+                  	public Boolean canMove(Field source) {
+		Boolean[] fia = new Boolean[8];
+
+		if(existsField(source.getX()-1, source.getY()-1)){
+			fia[0] = null==this.getField(source.getX()-1, source.getY()-1).getActor();
+		}
+		if(existsField(source.getX()-1, source.getY())){
+			fia[1] = null==this.getField(source.getX()-1, source.getY()).getActor();
+		}
+		if(existsField(source.getX()-1, source.getY()+1)){
+			fia[2] = null==this.getField(source.getX()-1, source.getY()+1).getActor();
+		}
+		
+		if(existsField(source.getX(), source.getY()-1)){
+			fia[3] = null==this.getField(source.getX(), source.getY()-1).getActor();
+		}
+		if(existsField(source.getX(), source.getY()+1)){
+			fia[4] = null==this.getField(source.getX(), source.getY()+1).getActor();
+		}
+		
+		if(existsField(source.getX()+1, source.getY()-1)){
+			fia[5] = null==this.getField(source.getX()+1, source.getY()-1).getActor();
+		}
+		if(existsField(source.getX()+1, source.getY())){
+			fia[6] = null==this.getField(source.getX()+1, source.getY()).getActor();
+		}
+		if(existsField(source.getX()+1, source.getY()+1)){
+			fia[7] = null==this.getField(source.getX()+1, source.getY()+1).getActor();
+		}
+		
+		Boolean cmove = false;
+		for(Boolean anyFree : fia){
+			if(anyFree){ cmove = true; }
+		}
+		
+		return cmove;
+	}
+	
+	private Boolean existsField(int x, int y){
+		return !( (x < 0) || (x > spielfeld.length-1) || (y < 0) || (y > spielfeld[0].length-1)) ;
+	}
+	
+	
+	
+	
+	
+	
+	Move
+	
+				/*
+			boolean moved = false;
+			while(!moved){
+				int newX = 0;
+				int newY = 0;
+
+				int diffX = target.getX() - field.getX();
+				int diffY = target.getY() - field.getY();
+				
+				if(Math.abs(xDir)+diffX > Math.abs(yDir)+diffY){
+					newX = next.getX() + xDir;
+					newY = next.getY() + diffY;
+				}else{
+					newX = next.getX() + diffX;
+					newY = next.getY() + yDir;
+				}
+				newX = newX % 2;
+				newY = newY % 2;
+				next = game.getMap().getField(field.getX()+newX, field.getY()+newY);
+				
+				if(this.setField(next)){
+					moved = true;
+					old.setActor(null);
+					next.setActor(this);
+				}
+				
+			}
+			*/
